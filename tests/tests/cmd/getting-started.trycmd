@@ -1,0 +1,58 @@
+```
+$ JJ_RANDOMNESS_SEED=12345 jj git clone --colocate git@github.com:jj-tutorial/hello-world .
+Fetching into new repo in "[CWD]"
+bookmark: trunk@origin [new] untracked
+Setting the revset alias `trunk()` to `trunk@origin`
+Working copy now at: tnmounps 4fed3b0d (empty) (no description set)
+Parent commit      : ptrqnyzv 0c72abbb trunk | Hello, world!
+Added 4 files, modified 0 files, removed 0 files
+
+$ tree . -a -L 1 -C
+
+$ jj config set --repo debug.randomness-seed 12346
+
+$ jj log
+@  tnmounps steve@steveklabnik.com 2025-02-05 16:43:34 4fed3b0d
+│  (empty) (no description set)
+◆  ptrqnyzv steve@steveklabnik.com 2024-09-23 19:43:36 trunk git_head() 0c72abbb
+│  Hello, world!
+~
+
+$ jj status
+The working copy is clean
+Working copy : tnmounps 4fed3b0d (empty) (no description set)
+Parent commit: ptrqnyzv 0c72abbb trunk | Hello, world!
+
+$ sed -i 's/Hello/Goodbye/' src/main.rs
+
+$ jj st
+The working copy is clean
+Working copy : tnmounps 4fed3b0d (empty) (no description set)
+Parent commit: ptrqnyzv 0c72abbb trunk | Hello, world!
+
+$ jj commit -m "Goodbye, world!"
+Working copy now at: wsxvoskz 286ba8f8 (empty) (no description set)
+Parent commit      : tnmounps 9c101fd9 (empty) Goodbye, world!
+
+$ jj log
+@  wsxvoskz steve@steveklabnik.com 2025-02-05 16:43:34 286ba8f8
+│  (empty) (no description set)
+○  tnmounps steve@steveklabnik.com 2025-02-05 16:43:34 git_head() 9c101fd9
+│  (empty) Goodbye, world!
+◆  ptrqnyzv steve@steveklabnik.com 2024-09-23 19:43:36 trunk 0c72abbb
+│  Hello, world!
+~
+
+$ jj bookmark create goodbye-world -r @-
+Created 1 bookmarks pointing to tnmounps 9c101fd9 goodbye-world | (empty) Goodbye, world!
+
+$ jj log
+@  wsxvoskz steve@steveklabnik.com 2025-02-05 16:43:34 286ba8f8
+│  (empty) (no description set)
+○  tnmounps steve@steveklabnik.com 2025-02-05 16:43:34 goodbye-world git_head() 9c101fd9
+│  (empty) Goodbye, world!
+◆  ptrqnyzv steve@steveklabnik.com 2024-09-23 19:43:36 trunk 0c72abbb
+│  Hello, world!
+~
+
+```

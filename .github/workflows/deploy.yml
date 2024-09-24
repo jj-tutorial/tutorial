@@ -22,18 +22,19 @@ jobs:
           mkdir mdbook
           curl -sSL $url | tar -xz --directory=./mdbook
           echo `pwd`/mdbook >> $GITHUB_PATH
+      - name: Install jj
+        run: |
+          cargo install --locked --bin jj jj-cli --version=0.26.0
       - name: Build Book
         run: |
-          # This assumes your book is in the root of your repository.
-          # Just add a `cd` here if you need to change to another directory.
-          mdbook build
+          cargo build && PATH=$PATH:target/debug/ mdbook build book
       - name: Setup Pages
         uses: actions/configure-pages@v2
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload entire repository
-          path: 'book'
+          path: 'book/book'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1

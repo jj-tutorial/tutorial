@@ -1,0 +1,11 @@
+[book]
+authors = ["Steve Klabnik"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Getting Started with Jujutsu"
+
+[output.html]
+git-repository-url = "https://github.com/jj-tutorial/tutorial"
+
+[preprocessor.trycmd]

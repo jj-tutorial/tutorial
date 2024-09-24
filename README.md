@@ -1,6 +1,6 @@
 # Steve's Jujutsu tutorial
 
-[Read it here](https://steveklabnik.github.io/jujutsu-tutorial/).
+[Read it here](https://jj-tutorial.github.io/tutorial/).
 
 ## Requirements
 
@@ -23,10 +23,10 @@ $ brew install mdbook
 To build the book, type:
 
 ```bash
-$ mdbook build
+$ PATH=$PATH:target/debug/ mdbook build
 ```
 
-The output will be in the `book` subdirectory. To check it out, open it in
+The output will be in the `book/book` subdirectory. To check it out, open it in
 your web browser.
 
 _Firefox:_
