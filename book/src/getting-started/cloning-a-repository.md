@@ -5,10 +5,9 @@ instructions should be easy to adopt to any of the various similar code forges.
 
 ## Forking and cloning
 
-I've got a sample repository located here:
-[https://github.com/jj-tutorial/hello-world][]. We'll be using this repo as
-an example for this first part of the tutorial. Click "fork" to create
-a fork of your own.
+I've got a [sample repository] that you can fork. We'll be using this repo as
+an example for this first part of the tutorial. Click "fork" to create a fork
+of your own.
 
 Next, let's clone down our fork. Go to the directory where you'd like to create
 your clone, in my case, that's `~/src`. And then type this:
@@ -22,6 +21,8 @@ Working copy now at: snwusnyo 3ea00cda (empty) (no description set)
 Parent commit      : qvryknuz 5a15ed3b trunk | Hello, world!
 Added 4 files, modified 0 files, removed 0 files
 ```
+
+You'll want to `cd hello-world` if you're following along on your own computer.
 
 Just like `git clone`, `jj git clone` will clone a remote repository
 to your local disk. However, we are passing a certain flag to this
@@ -50,3 +51,5 @@ can see where we our in our history.
 
 There's a lot I could say about this output, but I'd rather show you how to get
 work done first. Let's make our first change.
+
+[sample repository]: https://github.com/jj-tutorial/hello-world
