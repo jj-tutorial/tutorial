@@ -56,7 +56,6 @@ impl Cache {
 
         map.entry(key.to_string())
             .or_insert_with(|| {
-                eprintln!("===rendering {key}");
                 let contents = fs::read_to_string(key).unwrap();
                 let contents: String = contents
                     .lines()
@@ -68,11 +67,9 @@ impl Cache {
 
                 let dir = TempDir::new().unwrap();
 
-                // we use git init here because we want .gitignore, and then rm .git
-
                 for command in contents.lines() {
                     // getting real hard-coded with it. we want to set this to never for
-                    // reproducibility in trycmd, but we also want it to be on here becuase
+                    // reproducibility in trycmd, but we also want it to be on here because
                     // that's the whole dang point!
                     let command = if command == "$ jj config set --repo ui.color never" {
                         " jj config set --repo ui.color always"
@@ -91,10 +88,16 @@ impl Cache {
                         .output()
                         .unwrap();
 
-                    let render = |s| ansi_to_html::convert(&String::from_utf8(s).unwrap()).unwrap();
+                    let render = |s| {
+                        let input = String::from_utf8(s).unwrap();
+                        let input = replace_colors(input);
+                        ansi_to_html::Converter::new()
+                            .four_bit_var_prefix(Some("jj-".to_string()))
+                            .convert(&input)
+                    };
 
-                    let stdout = render(output.stdout);
-                    let stderr = render(output.stderr);
+                    let stdout = render(output.stdout).expect("stdout failed to render");
+                    let stderr = render(output.stderr).expect("stderr failed to render");
 
                     rendered.push('$');
                     rendered.push_str(command);
@@ -106,12 +109,32 @@ impl Cache {
                     }
                 }
 
-                eprintln!("===output: {rendered}");
-
                 rendered
             })
             .to_string()
     }
+}
+
+fn replace_colors(input: String) -> String {
+    let re = Regex::new(r"\x1b\[38;5;([0-9]+)m").unwrap();
+
+    re.replace_all(&input, |caps: &regex::Captures| {
+        if let Ok(num) = caps[1].parse::<u8>() {
+            let replacement = match num {
+                0..=7 => 30 + num,        // Standard foreground colors
+                8..=15 => 90 + (num - 8), // Bright foreground colors
+                code => {
+                    eprintln!("non-16 color found: {code}");
+                    return caps[0].to_string(); // Keep unchanged if out of
+                                                // range
+                }
+            };
+            format!("\x1b[{}m", replacement)
+        } else {
+            caps[0].to_string()
+        }
+    })
+    .to_string()
 }
 
 fn run_examples(content: &str) -> Result<String> {
