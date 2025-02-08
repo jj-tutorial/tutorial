@@ -11,8 +11,8 @@ tutorial on [jj](https://jj-vcs.github.io/jj/latest/), a version control system.
 It is not the official tutorial, but so many folks liked the first version that
 I wrote, that it may become the official one someday. We'll see!
 
-If you're already sold on jj, feel free to skip to the next section. But if
-you're checking out this tutorial because you're curious about jj, but you're
+If you're already sold on `jj`, feel free to skip to the next section. But if
+you're checking out this tutorial because you're curious about `jj`, but you're
 not familiar with what it is all about, keep reading.
 
 Distributed version control became popular in the mid 2000s. Specifically, two
@@ -23,11 +23,17 @@ as their primary version control
 tool](https://survey.stackoverflow.co/2022/#section-version-control-version-control-systems),
 with just 1% for Mercurial.
 
-JJ is a next-generation version control system. It takes lessons from both of
-these projects, and has made a version control system that is as powerful as
-git, but as easy to use as Mercurial. But here's the truly great thing about
-jj: you can use jj with any git repository, and it'll just work. This means you
-can give jj a try, but nobody else needs to even know. And if you decide to not
-continue to use jj, you can stop, and you won't lose any of the work you did
-during your time with it, because it'll still be there, in your upstream git
-repository.
+As a relative power-user of git, I was always skeptical when people suggested
+that someone could do better. So here's my pitch for jj: jj is just as powerful
+as git is, while being significantly simpler and easier to use. I know that sounds
+like it's too good to be true, but it is. The way this is accomplished is by
+using fewer core ideas, and making it easier to combine them. We'll get into
+the actual details here during the tutorial.
+
+But here's the truly great thing about jj: it uses git as a backend. This means
+you can use jj with any git repository, and it'll just work. You can give jj a
+try, but nobody else needs to even know. And if you decide to not continue to
+use jj, you can stop, and you won't lose any of the work you did during your
+time with it, because it'll still be there, in your git repository.
+
+Anway, with that out of the way, let's get started!
