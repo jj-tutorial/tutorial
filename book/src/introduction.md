@@ -11,29 +11,27 @@ tutorial on [jj](https://jj-vcs.github.io/jj/latest/), a version control system.
 It is not the official tutorial, but so many folks liked the first version that
 I wrote, that it may become the official one someday. We'll see!
 
-If you're already sold on `jj`, feel free to skip to the next section. But if
-you're checking out this tutorial because you're curious about `jj`, but you're
-not familiar with what it is all about, keep reading.
+`jj` is the name of the CLI for Jujutsu. Jujutsu is a DVCS, or "distributed
+version control system." You may be familiar with other DVCSes, such as `git`,
+and we will sometimes compare and contrast with it, since it is the most popular
+VCS in current use. You don't need to be a `git` expert to read this tutorial.
 
-Distributed version control became popular in the mid 2000s. Specifically, two
-projects, released just twelve days apart, really took off: git and mercurial.
-I won't speculate as to why git "won" in the open source world, but it surely
-did: StackOverflow's 2022 Developer Survey reported that [94% of folks used git
-as their primary version control
-tool](https://survey.stackoverflow.co/2022/#section-version-control-version-control-systems),
-with just 1% for Mercurial.
+So why should you care about `jj`? Well, it has a property that's pretty rare in
+the world of programming: it is both simpler and easier than other DCVSes, but
+at the same time, it is more powerful. We're often
+taught, correctly, that there exist tradeoffs when we make choices. And
+"powerful but complex" is a very common tradeoff. That power has been worth it,
+and so people flocked to git over its predecessors.
 
-As a relative power-user of git, I was always skeptical when people suggested
-that someone could do better. So here's my pitch for jj: jj is just as powerful
-as git is, while being significantly simpler and easier to use. I know that sounds
-like it's too good to be true, but it is. The way this is accomplished is by
-using fewer core ideas, and making it easier to combine them. We'll get into
-the actual details here during the tutorial.
+I know that sounds like a huge claim, but I believe that the rest of this
+tutorial will show you why.
 
-But here's the truly great thing about jj: it uses git as a backend. This means
-you can use jj with any git repository, and it'll just work. You can give jj a
-try, but nobody else needs to even know. And if you decide to not continue to
-use jj, you can stop, and you won't lose any of the work you did during your
-time with it, because it'll still be there, in your git repository.
+`jj`'s design is about having a smaller number of essential concepts, and ensure
+that they fit together nicely. Once you learn the basics, the learning curve
+to advanced usage is very smooth.
 
-Anway, with that out of the way, let's get started!
+There's one other reason you should be interested in giving `jj` a try: it has a
+`git` compatible backend, and so you can use `jj` on your own, without requiring
+anyone else you're working with to convert too. This means that there's no real
+downside to giving it a shot; if it's not for you, you're not giving up all of
+the history you wrote with it, and can go right back to `git` with no issues.
