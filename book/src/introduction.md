@@ -6,6 +6,11 @@ Please note this is an in-progress version of my tutorial.
 You can find a more complete version [over here](https://steveklabnik.github.io/jujutsu-tutorial/).
 </div>
 
+Hi there! My name is [Steve](https://github.com/steveklabnik). This is my
+tutorial on [jj](https://jj-vcs.github.io/jj/latest/), a version control system.
+It is not the official tutorial, but so many folks liked the first version that
+I wrote, that it may become the official one someday. We'll see!
+
 If you're already sold on jj, feel free to skip to the next section. But if
 you're checking out this tutorial because you're curious about jj, but you're
 not familiar with what it is all about, keep reading.
