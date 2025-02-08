@@ -3,4 +3,5 @@ members = [
     "mdbook-trycmd",
     "tests",
 ]
+
 resolver = "2"

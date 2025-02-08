@@ -55,15 +55,19 @@ impl Cache {
 
             let dir = TempDir::new().unwrap();
 
+            // we use git init here because we want .gitignore, and then rm .git
+
             for command in contents.lines() {
                 // getting real hard-coded with it. we want to set this to never for
                 // reproducibility in trycmd, but we also want it to be on here becuase
                 // that's the whole dang point!
                 let command = if command == "$ jj config set --repo ui.color never" {
-                    "jj config set --repo ui.color always"
+                    " jj config set --repo ui.color always"
                 } else {
                     command.strip_prefix('$').unwrap()
                 };
+
+
                 eprintln!("about to run {command}");
 
                 let output = Command::new("bash")

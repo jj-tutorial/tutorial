@@ -2,7 +2,7 @@ name: Deploy
 on:
   push:
     branches:
-      - main
+      - trunk
 
 jobs:
   deploy:
@@ -22,19 +22,27 @@ jobs:
           mkdir mdbook
           curl -sSL $url | tar -xz --directory=./mdbook
           echo `pwd`/mdbook >> $GITHUB_PATH
-      - name: Install jj
+      - uses: taiki-e/cache-cargo-install-action@v2
+        with:
+          tool: jj-cli@0.26.0
+      - name: Config jj
         run: |
-          cargo install --locked --bin jj jj-cli --version=0.26.0
+          jj config set --user user.name "Steve Klabnik"
+          jj config set --user user.email "steve@steveklabnik.com"
+          jj config set  ui.allow-init-native true --user
+      - name: Run tests
+        run: |
+          JJ_TIMESTAMP="2025-02-05T22:43:34+00:00" JJ_OP_TIMESTAMP="2025-02-05T22:43:34+00:00" cargo test
       - name: Build Book
         run: |
           cargo build && PATH=$PATH:target/debug/ mdbook build book
       - name: Setup Pages
-        uses: actions/configure-pages@v2
+        uses: actions/configure-pages@v5
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
           path: 'book/book'
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
