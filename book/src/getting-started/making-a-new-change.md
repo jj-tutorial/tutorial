@@ -16,20 +16,20 @@ You can double check with `jj status`:
 If you look closely in the output we just saw, you'll see four identifiers:
 
 ```text
-kzmwwmru 6e2297c3
-ptrqnyzv 0c72abbb
+wsxvoskz 3471e1d7
+snwusnyo 308fcf55
 ```
 
 In `git`, we often talk about commits and their ID numbers. The
-`6e2297c3` and `0c72abbb` bits in the above output are in fact commit IDs. What
-about `kzmwwmru` and `ptrqnyzv` though? Those are called "change ID"s. `jj` has
+`3471e1d7` and `308fcf55` bits in the above output are in fact commit IDs. What
+about `wsxvoskz` and `snwusnyo` though? Those are called "change ID"s. `jj` has
 a concept called a "change", and it's like a commit that evolves over time. This
 change ID will remain stable over the life of the change, but every time we
 modify it, we'll see a new commit ID. In a sense, a change represents the
 evolution of a commit over time.
 
-Let's see how that works by modifying a file. Our change ID is `kzmwwru` and our
-commit is `6e2297c3`. Let's modify a file and see what happens.
+Let's see how that works by modifying a file. Our change ID is `wsxvoskz` and our
+commit is `3471e1d7`. Let's modify a file and see what happens.
 
 ## Modifying a file
 
@@ -58,8 +58,8 @@ We can see we've modified `src/main.rs`. Whenever we run a `jj` command,
 it updates the contents of `@`, the commit that represents the working copy,
 to contain all of the changes we've made.
 
-We still see our change ID `kzmwwru`, but now, instead of `6e2297c3`, we have
-`abbbf36c`. Our change ID is stable, but now that we've evolved it by making
+We still see our change ID `wsxvoskz`, but now, instead of `3471e1d7`, we have
+`3a23a995`. Our change ID is stable, but now that we've evolved it by making
 changes to our working directory, we get a new commit that represents this
 latest state. This is a bit of a mental shift from `git`! In `git`, once we
 have a commit, it's "done," unless we decide to modify it later. With `jj`,
@@ -80,7 +80,7 @@ To see our changes in context, let's look at `jj log` again:
 
 {{#trycmdinclude tests/tests/cmd/getting-started.trycmd:57:64}} 
 
-We can see that `@` is now on a new, empty change. And we have `kzmwwmru`
+We can see that `@` is now on a new, empty change. And we have `wsxvoskz`
 as its parent.
 
 In the next section, we'll make a pull request for this change!
