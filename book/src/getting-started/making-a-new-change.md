@@ -7,7 +7,7 @@ simplest possible workflow. If you're a fan of building up small commits via the
 If you remember from the end of the last section, we're on an empty change.
 You can double check with `jj status`:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:41:44}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:29:32}} 
 
 `jj st` is an alias to make that a bit easier.
 
@@ -52,7 +52,7 @@ fn main() {
 
 A bit fatalistic, but it works. Let's run `jj st` again:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:47:51}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:35:40}} 
 
 We can see we've modified `src/main.rs`. Whenever we run a `jj` command,
 it updates the contents of `@`, the commit that represents the working copy,
@@ -74,11 +74,11 @@ identifier that we can talk about.
 Let's say we're happy with the contents of this change. We want to
 finish up this work, and start something else. To do that, we can use `jj commit`:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:53:55}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:41:43}} 
 
 To see our changes in context, let's look at `jj log` again:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:57:64}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:45:52}} 
 
 We can see that `@` is now on a new, empty change. And we have `wsxvoskz`
 as its parent.

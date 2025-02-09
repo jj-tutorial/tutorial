@@ -2,7 +2,7 @@
 
 In the last section, we made a new change, built on top of `trunk`:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:57:64}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:45:52}} 
 
 Let's make a pull request for this.
 
@@ -16,7 +16,7 @@ than `git` branches, but since branches are a special type of tag, they'll work.
 
 To create a bookmark, we can use `jj bookmark`:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:66:67}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:54:55}} 
 
 `jj bookmark create` takes a name for the bookmark, and then we also pass a `-r` flag.
 This is short for "revision," and it means we can pass in a change ID, a commit ID,
@@ -25,7 +25,7 @@ another bookmark name... lots of things. In this case, we pass `@-`, which means
 
 Let's look at our log:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:69:76}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:57:64}} 
 
 We can now see `goodbye-world` listed on the right. Great! Let's push that up
 to GitHub:

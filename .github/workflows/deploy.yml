@@ -32,7 +32,7 @@ jobs:
           jj config set  ui.allow-init-native true --user
       - name: Run tests
         run: |
-          JJ_TIMESTAMP="2025-02-05T22:43:34+00:00" JJ_OP_TIMESTAMP="2025-02-05T22:43:34+00:00" cargo test
+          cargo test
       - name: Build Book
         run: |
           cargo build && PATH=$PATH:target/debug/ mdbook build book

@@ -29,7 +29,7 @@ command, `--colocate`. `jj` supports two different kinds of repositories:
 colocated, and non-colocated. What's the difference? Well, let's take a look
 at our repository:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:22:31}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:10:19}} 
 
 We have both a `.jj` and a `.git` directory at the top level. This means both
 jj's information as git's information are co-located: they're next to each
@@ -43,7 +43,7 @@ at the root of the repository will still work.
 
 Let's see what our repository looks like:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:35:39}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:22:27}} 
 
 This looks a bit different than `git log`, but it's the same general idea: we
 can see where we our in our history.

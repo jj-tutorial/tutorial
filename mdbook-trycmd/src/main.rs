@@ -85,8 +85,6 @@ impl Cache {
                 let stdout = render(output.stdout);
                 let stderr = render(output.stderr);
 
-                let stdout = stdout.replace("git_head()", "HEAD@git");
-                
                 rendered.push('$');
                 rendered.push_str(command);
                 rendered.push('\n');
