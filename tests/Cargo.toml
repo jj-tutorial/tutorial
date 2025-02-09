@@ -1,11 +1,10 @@
 [package]
-name = "jj"
-version = "0.25.0"
+name = "tests"
+version = "0.26.0"
 edition = "2021"
 publish = false
 
 [dependencies]
-jj-cli = "=0.26.0"
 
 [dev-dependencies]
 trycmd = { git = "https://github.com/steveklabnik/snapbox", branch = "main" }
