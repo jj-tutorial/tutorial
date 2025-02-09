@@ -166,7 +166,7 @@ fn replace_matches(input: &mut String, matches: &mut Vec<Match>) -> io::Result<(
 
     for m in matches {
         let replacement = m.get_replacement()?;
-        let replacement = format!("<pre><code class='language-bash hljs'>{replacement}</code></pre>");
+        let replacement = format!("<pre><code class='nohighlight'>{replacement}</code></pre>");
         input.replace_range(m.pos_start..m.pos_end, &replacement);
     }
 
