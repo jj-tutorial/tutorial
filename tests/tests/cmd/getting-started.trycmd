@@ -9,16 +9,14 @@ Added 4 files, modified 0 files, removed 0 files
 
 $ jj config set --repo ui.color never
 
-$ tree . -a -L 1 -C --noreport
- .
- ├── .git
- ├── .gitignore
- ├── .jj
- ├── Cargo.lock
- ├── Cargo.toml
- └── src
- 
- 3 directories, 3 files
+$ tree . -a -L 1 --noreport
+.
+├── .git
+├── .gitignore
+├── .jj
+├── Cargo.lock
+├── Cargo.toml
+└── src
 
 $ jj config set --repo debug.randomness-seed 12347
 
@@ -37,33 +35,90 @@ Parent commit: ptrqnyzv 0c72abbb trunk | Hello, world!
 $ sed -i 's/Hello/Goodbye/' src/main.rs
 
 $ jj st
-The working copy is clean
-Working copy : tnmounps 4fed3b0d (empty) (no description set)
+Working copy changes:
+M src/main.rs
+Working copy : tnmounps 729bb51c (no description set)
 Parent commit: ptrqnyzv 0c72abbb trunk | Hello, world!
 
 $ jj commit -m "Goodbye, world!"
-Working copy now at: xlpymuzl 286ba8f8 (empty) (no description set)
-Parent commit      : tnmounps 9c101fd9 (empty) Goodbye, world!
+Working copy now at: xlpymuzl 95d5c471 (empty) (no description set)
+Parent commit      : tnmounps 326253c2 Goodbye, world!
 
 $ jj log
-@  xlpymuzl steve@steveklabnik.com 2025-02-05 22:43:34 286ba8f8
+@  xlpymuzl steve@steveklabnik.com 2025-02-05 22:43:34 95d5c471
 │  (empty) (no description set)
-○  tnmounps steve@steveklabnik.com 2025-02-05 22:43:34 git_head() 9c101fd9
-│  (empty) Goodbye, world!
+○  tnmounps steve@steveklabnik.com 2025-02-05 22:43:34 git_head() 326253c2
+│  Goodbye, world!
 ◆  ptrqnyzv steve@steveklabnik.com 2024-09-24 01:43:36 trunk 0c72abbb
 │  Hello, world!
 ~
 
 $ jj bookmark create goodbye-world -r @-
-Created 1 bookmarks pointing to tnmounps 9c101fd9 goodbye-world | (empty) Goodbye, world!
+Created 1 bookmarks pointing to tnmounps 326253c2 goodbye-world | Goodbye, world!
 
 $ jj log
-@  xlpymuzl steve@steveklabnik.com 2025-02-05 22:43:34 286ba8f8
+@  xlpymuzl steve@steveklabnik.com 2025-02-05 22:43:34 95d5c471
 │  (empty) (no description set)
-○  tnmounps steve@steveklabnik.com 2025-02-05 22:43:34 goodbye-world git_head() 9c101fd9
-│  (empty) Goodbye, world!
+○  tnmounps steve@steveklabnik.com 2025-02-05 22:43:34 goodbye-world git_head() 326253c2
+│  Goodbye, world!
 ◆  ptrqnyzv steve@steveklabnik.com 2024-09-24 01:43:36 trunk 0c72abbb
 │  Hello, world!
 ~
+
+$ jj config set --repo debug.randomness-seed 12348
+
+$ jj commit -m "hello and goodbye world"
+Working copy now at: uwytnpsl 1320ff3e (empty) (no description set)
+Parent commit      : xlpymuzl 604b85f8 (empty) hello and goodbye world
+
+$ sed -i '/println!("Goodbye, world!");/i\    println!("Hello, world!");' src/main.rs 
+$ sed -i 's/Goodbye/Hello/' src/main.rs
+
+$ jj config set --repo debug.randomness-seed 12349
+
+$ jj squash
+Working copy now at: skrvmwst f909120c (empty) (no description set)
+Parent commit      : xlpymuzl 4c9d75dd hello and goodbye world
+
+$ jj st
+The working copy is clean
+Working copy : skrvmwst f909120c (empty) (no description set)
+Parent commit: xlpymuzl 4c9d75dd hello and goodbye world
+
+$ jj log
+@  skrvmwst steve@steveklabnik.com 2025-02-05 22:43:34 f909120c
+│  (empty) (no description set)
+○  xlpymuzl steve@steveklabnik.com 2025-02-05 22:43:34 git_head() 4c9d75dd
+│  hello and goodbye world
+○  tnmounps steve@steveklabnik.com 2025-02-05 22:43:34 goodbye-world 326253c2
+│  Goodbye, world!
+◆  ptrqnyzv steve@steveklabnik.com 2024-09-24 01:43:36 trunk 0c72abbb
+│  Hello, world!
+~
+
+$ jj config set --repo debug.randomness-seed 12350
+$ jj show zz
+Commit ID: 0000000000000000000000000000000000000000
+Change ID: zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+Author   : (no name set) <(no email set)> (1970-01-01 00:00:00)
+Committer: (no name set) <(no email set)> (1970-01-01 00:00:00)
+
+    (no description set)
+
+
+$ sed -i 's/Hello/Goodbye/' src/main.rs
+
+$ jj st
+Working copy changes:
+M src/main.rs
+Working copy : skrvmwst 67bb43f3 (no description set)
+Parent commit: xlpymuzl 4c9d75dd hello and goodbye world
+
+$ jj evolog --summary
+@  skrvmwst steve@steveklabnik.com 2025-02-05 22:43:34 67bb43f3
+│  (no description set)
+│  M src/main.rs
+○  skrvmwst hidden steve@steveklabnik.com 2025-02-05 22:43:34 f909120c
+   (empty) (no description set)
 
 ```

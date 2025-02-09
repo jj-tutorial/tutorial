@@ -17,6 +17,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: which tree
+        run: |
+          which tree
       - name: Configure jj
         run: |
           cargo run --bin jj config set --user user.name "Steve Klabnik"
