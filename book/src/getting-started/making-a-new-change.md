@@ -5,31 +5,14 @@ simplest possible workflow. If you're a fan of building up small commits via the
 `git` index, we'll learn how to do that in the next chapter. Baby steps!
 
 If you remember from the end of the last section, we're on an empty change.
-You can double check with `jj status`:
+You can double check with `jj status` (or `jj st`):
 
 {{#trycmdinclude tests/tests/cmd/getting-started.trycmd:29:32}} 
 
-`jj st` is an alias to make that a bit easier.
-
-## Changes and commits
-
-If you look closely in the output we just saw, you'll see four identifiers:
-
-```text
-wsxvoskz 3471e1d7
-snwusnyo 308fcf55
-```
-
-In `git`, we often talk about commits and their ID numbers. The
-`3471e1d7` and `308fcf55` bits in the above output are in fact commit IDs. What
-about `wsxvoskz` and `snwusnyo` though? Those are called "change ID"s. `jj` has
-a concept called a "change", and it's like a commit that evolves over time. This
-change ID will remain stable over the life of the change, but every time we
-modify it, we'll see a new commit ID. In a sense, a change represents the
-evolution of a commit over time.
-
-Let's see how that works by modifying a file. Our change ID is `wsxvoskz` and our
-commit is `3471e1d7`. Let's modify a file and see what happens.
+So what is a change, anyway? It is the core primitive you'll be working with in
+`jj`. We'll talk about that actually means in Part 2. For now, you can think of
+a change as a commit. There are some differences, but now is not the time for
+talking, but for action! Let's do some work.
 
 ## Modifying a file
 
@@ -54,33 +37,35 @@ A bit fatalistic, but it works. Let's run `jj st` again:
 
 {{#trycmdinclude tests/tests/cmd/getting-started.trycmd:35:40}} 
 
-We can see we've modified `src/main.rs`. Whenever we run a `jj` command,
-it updates the contents of `@`, the commit that represents the working copy,
-to contain all of the changes we've made.
-
-We still see our change ID `wsxvoskz`, but now, instead of `3471e1d7`, we have
-`3a23a995`. Our change ID is stable, but now that we've evolved it by making
-changes to our working directory, we get a new commit that represents this
-latest state. This is a bit of a mental shift from `git`! In `git`, once we
-have a commit, it's "done," unless we decide to modify it later. With `jj`,
-changes aren't just for finished work: they're also for tracking in-progress
-work. We'll talk more about mutable vs immutable changes eventually, but for
-now, just know that changes and commits are two different things, and that
-a change represents the evolution of a commit over time, giving it a stable
-identifier that we can talk about.
+We can see we've modified `src/main.rs`. Whenever we run a `jj` command, `jj`
+will snapshot all of the changes that we've made to any files in our repository
+and add those differences to the change we're working on. If you're a `git`
+user, you may be already wondering about something like `git`'s index.  Don't
+worry, even though `jj` always adds the contents of files into your changes, you
+don't lose the staging area. We'll talk about that soon.  Also, you can turn
+this off, but I strongly suggest you give it a try. I thought I would hate it,
+but now I love it.
 
 ## Using `jj commit`
 
-Let's say we're happy with the contents of this change. We want to
-finish up this work, and start something else. To do that, we can use `jj commit`:
+Let's say we're happy with the contents of this change. We're done, and we want
+to start working on something else. To do that, we can use `jj commit`:
 
 {{#trycmdinclude tests/tests/cmd/getting-started.trycmd:41:43}} 
+
+Easy enough! Our working copy is now on a fresh new change, and its parent
+is our "Goodbye, world!" change that we just committed.
 
 To see our changes in context, let's look at `jj log` again:
 
 {{#trycmdinclude tests/tests/cmd/getting-started.trycmd:45:52}} 
 
-We can see that `@` is now on a new, empty change. And we have `wsxvoskz`
-as its parent.
+You can see that we're currently working on an empty change. It has `x` as a
+change ID, but there's also a little `@` there: `@` is an alias for the working
+copy, that is, whatever change `@` is on is the one that we're currently working
+on.
+
+Its parent is our "Goodbye, world!" change, `t`. Its parent is `p`, the "Hello, world"
+change I included in the repository we cloned down.
 
 In the next section, we'll make a pull request for this change!

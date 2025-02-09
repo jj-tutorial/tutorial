@@ -40,9 +40,9 @@ allows you to still easily run `git` commands as well as `jj`'s. This can
 help ease you into things. It also means tooling that expects to see a `.git`
 at the root of the repository will still work.
 
-## Taking a look around
+## Looking at history
 
-Let's see what our repository looks like:
+Let's see what our repository's history looks like:
 
 {{#trycmdinclude tests/tests/cmd/getting-started.trycmd:22:27}} 
 
@@ -50,6 +50,6 @@ This looks a bit different than `git log`, but it's the same general idea: we
 can see where we our in our history.
 
 There's a lot I could say about this output, but I'd rather show you how to get
-work done first. Let's make our first change.
+work done first. Let's make our first *change*.
 
 [sample repository]: https://github.com/jj-tutorial/hello-world

@@ -4,7 +4,8 @@
     - [Cloning a repository](getting-started/cloning-a-repository.md)
     - [Making a new change](getting-started/making-a-new-change.md)
     - [Interacting with GitHub](getting-started/interacting-with-github.md)
-    - [A summary of the basics](getting-started/a-summary-of-the-basics.md)
+
+- [Learning more about core concepts]()
 
 - [Two Basic Workflows]()
     - [The Squash Workflow]()
