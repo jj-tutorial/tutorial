@@ -1,0 +1,34 @@
+name: Format Checks
+on:
+  push:
+    branches: trunk
+  pull_request:
+    branches: trunk
+  merge_group:
+
+env:
+  CARGO_INCREMENTAL: 0
+  CARGO_NET_RETRY: 10
+  CI: 1
+  RUST_BACKTRACE: short
+  RUSTFLAGS: "-D warnings"
+  RUSTUP_MAX_RETRIES: 10
+
+jobs:
+  rustfmt:
+    name: Check rustfmt
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install Rust
+        run: |
+          rustup install nightly --profile=minimal
+          rustup component add --toolchain nightly rustfmt
+
+      - name: Check rustfmt
+        run: cargo +nightly fmt -- --check

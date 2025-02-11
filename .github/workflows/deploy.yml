@@ -22,17 +22,15 @@ jobs:
           mkdir mdbook
           curl -sSL $url | tar -xz --directory=./mdbook
           echo `pwd`/mdbook >> $GITHUB_PATH
-      - uses: taiki-e/cache-cargo-install-action@v2
+      - uses: baptiste0928/cargo-install@v3
         with:
-          tool: jj-cli@0.26.0
-      - name: Config jj
+          crate: jj-cli
+          version: "=0.26.0"
+      - name: Configure jj
         run: |
           jj config set --user user.name "Steve Klabnik"
           jj config set --user user.email "steve@steveklabnik.com"
           jj config set  ui.allow-init-native true --user
-      - name: Run tests
-        run: |
-          cargo test
       - name: Build Book
         run: |
           cargo build && PATH=$PATH:target/debug/ mdbook build book

@@ -1,8 +1,14 @@
-use std::{
- collections::HashMap, fs, io, process::{Command, Stdio}, sync::{LazyLock, Mutex}
-};
+use std::collections::HashMap;
+use std::fs;
+use std::io;
+use std::process::Command;
+use std::process::Stdio;
+use std::sync::LazyLock;
+use std::sync::Mutex;
 
-use mdbook::{BookItem, errors::Result, preprocess::CmdPreprocessor};
+use mdbook::errors::Result;
+use mdbook::preprocess::CmdPreprocessor;
+use mdbook::BookItem;
 use regex::Regex;
 use tempfile::TempDir;
 
@@ -40,66 +46,71 @@ struct Cache {
     inner: LazyLock<Mutex<HashMap<String, String>>>,
 }
 
-static CACHE: Cache = Cache { inner: LazyLock::new(|| Mutex::new(HashMap::new())) };
+static CACHE: Cache = Cache {
+    inner: LazyLock::new(|| Mutex::new(HashMap::new())),
+};
 
 impl Cache {
     fn render(&self, key: &str) -> String {
         let mut map = self.inner.lock().unwrap();
 
-        map.entry(key.to_string()).or_insert_with(|| {
-            eprintln!("===rendering {key}");
-            let contents = fs::read_to_string(key).unwrap();
-            let contents: String = contents.lines().filter(|line| line.starts_with("$ ")).collect::<Vec<&str>>().join("\n");
+        map.entry(key.to_string())
+            .or_insert_with(|| {
+                eprintln!("===rendering {key}");
+                let contents = fs::read_to_string(key).unwrap();
+                let contents: String = contents
+                    .lines()
+                    .filter(|line| line.starts_with("$ "))
+                    .collect::<Vec<&str>>()
+                    .join("\n");
 
-            let mut rendered = String::new();
+                let mut rendered = String::new();
 
-            let dir = TempDir::new().unwrap();
+                let dir = TempDir::new().unwrap();
 
-            // we use git init here because we want .gitignore, and then rm .git
+                // we use git init here because we want .gitignore, and then rm .git
 
-            for command in contents.lines() {
-                // getting real hard-coded with it. we want to set this to never for
-                // reproducibility in trycmd, but we also want it to be on here becuase
-                // that's the whole dang point!
-                let command = if command == "$ jj config set --repo ui.color never" {
-                    " jj config set --repo ui.color always"
-                } else {
-                    command.strip_prefix('$').unwrap()
-                };
+                for command in contents.lines() {
+                    // getting real hard-coded with it. we want to set this to never for
+                    // reproducibility in trycmd, but we also want it to be on here becuase
+                    // that's the whole dang point!
+                    let command = if command == "$ jj config set --repo ui.color never" {
+                        " jj config set --repo ui.color always"
+                    } else {
+                        command.strip_prefix('$').unwrap()
+                    };
 
+                    eprintln!("about to run {command}");
 
-                eprintln!("about to run {command}");
+                    let output = Command::new("bash")
+                        .current_dir(&dir)
+                        .arg("-c")
+                        .arg(command)
+                        .stdout(Stdio::piped())
+                        .stderr(Stdio::piped())
+                        .output()
+                        .unwrap();
 
-                let output = Command::new("bash")
-                    .current_dir(&dir)
-                    .arg("-c")
-                    .arg(command)
-                    .stdout(Stdio::piped())
-                    .stderr(Stdio::piped())
-                    .output()
-                    .unwrap();
+                    let render = |s| ansi_to_html::convert(&String::from_utf8(s).unwrap()).unwrap();
 
-                let render = |s|
-                     ansi_to_html::convert(&String::from_utf8(s).unwrap()).unwrap();
-                    
-                let stdout = render(output.stdout);
-                let stderr = render(output.stderr);
+                    let stdout = render(output.stdout);
+                    let stderr = render(output.stderr);
 
-                rendered.push('$');
-                rendered.push_str(command);
-                rendered.push('\n');
-                rendered.push_str(&stdout);
-                rendered.push_str(&stderr);
-                if !stdout.is_empty() || !stderr.is_empty() {
+                    rendered.push('$');
+                    rendered.push_str(command);
                     rendered.push('\n');
+                    rendered.push_str(&stdout);
+                    rendered.push_str(&stderr);
+                    if !stdout.is_empty() || !stderr.is_empty() {
+                        rendered.push('\n');
+                    }
                 }
 
-            }
+                eprintln!("===output: {rendered}");
 
-            eprintln!("===output: {rendered}");
-
-            rendered
-        }).to_string()
+                rendered
+            })
+            .to_string()
     }
 }
 
@@ -107,19 +118,22 @@ fn run_examples(content: &str) -> Result<String> {
     let mut buf = content.to_string();
     let regex = Regex::new(r#"\{\{#trycmdinclude ([\w\/.\-]+):(\d+)(?::(\d+))?\}\}"#).unwrap();
 
-    let mut matches: Vec<_> = regex.captures_iter(content).map(|cap| {
-        let m = cap.get(0).unwrap();
+    let mut matches: Vec<_> = regex
+        .captures_iter(content)
+        .map(|cap| {
+            let m = cap.get(0).unwrap();
 
-        let path = cap.get(1).unwrap();
+            let path = cap.get(1).unwrap();
 
-        Match {
-            contents: CACHE.render(path.as_str()),
-            pos_start: m.start(),
-            pos_end: m.end(),
-            start: cap.get(2).map(|c| c.as_str().parse().unwrap()),
-            end: cap.get(3).map(|c| c.as_str().parse().unwrap()),
-        }
-    }).collect();
+            Match {
+                contents: CACHE.render(path.as_str()),
+                pos_start: m.start(),
+                pos_end: m.end(),
+                start: cap.get(2).map(|c| c.as_str().parse().unwrap()),
+                end: cap.get(3).map(|c| c.as_str().parse().unwrap()),
+            }
+        })
+        .collect();
 
     replace_matches(&mut buf, &mut matches)?;
 
@@ -137,7 +151,8 @@ struct Match {
 
 impl Match {
     fn get_replacement(&self) -> io::Result<String> {
-        let extracted = self.contents
+        let extracted = self
+            .contents
             .lines()
             .enumerate()
             .filter_map(|(i, line)| {

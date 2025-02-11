@@ -1,0 +1,27 @@
+name: Test
+on:
+  push:
+    branches: trunk
+  pull_request:
+    branches: trunk
+  merge_group:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # To push a branch 
+      pages: write  # To push to a GitHub Pages site
+      id-token: write # To update the deployment status
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Configure jj
+        run: |
+          cargo run --bin jj config set --user user.name "Steve Klabnik"
+          cargo run --bin jj config set --user user.email "steve@steveklabnik.com"
+          cargo run --bin jj config set  ui.allow-init-native true --user
+      - name: Run tests
+        run: |
+          cargo test
