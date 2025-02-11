@@ -9,7 +9,16 @@ Added 4 files, modified 0 files, removed 0 files
 
 $ jj config set --repo ui.color never
 
-$ tree . -a -L 1 -C
+$ tree . -a -L 1 -C --noreport
+ .
+ ├── .git
+ ├── .gitignore
+ ├── .jj
+ ├── Cargo.lock
+ ├── Cargo.toml
+ └── src
+ 
+ 3 directories, 3 files
 
 $ jj config set --repo debug.randomness-seed 12347
 

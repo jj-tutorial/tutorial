@@ -7,7 +7,7 @@ simplest possible workflow. If you're a fan of building up small commits via the
 If you remember from the end of the last section, we're on an empty change.
 You can double check with `jj status` (or `jj st`):
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:29:32}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:27:30}} 
 
 So what is a change, anyway? It is the core primitive you'll be working with in
 `jj`. We'll talk about that actually means in Part 2. For now, you can think of
@@ -35,7 +35,7 @@ fn main() {
 
 A bit fatalistic, but it works. Let's run `jj st` again:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:35:40}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:33:38}} 
 
 We can see we've modified `src/main.rs`. Whenever we run a `jj` command, `jj`
 will snapshot all of the changes that we've made to any files in our repository
@@ -51,14 +51,14 @@ but now I love it.
 Let's say we're happy with the contents of this change. We're done, and we want
 to start working on something else. To do that, we can use `jj commit`:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:41:43}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:39:41}} 
 
 Easy enough! Our working copy is now on a fresh new change, and its parent
 is our "Goodbye, world!" change that we just committed.
 
 To see our changes in context, let's look at `jj log` again:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:45:52}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:43:50}} 
 
 You can see that we're currently working on an empty change. It has `x` as a
 change ID, but there's also a little `@` there: `@` is an alias for the working
