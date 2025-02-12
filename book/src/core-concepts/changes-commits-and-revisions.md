@@ -60,6 +60,12 @@ to a commit, `jj` will use its first line as the description in `jj log`.
 Just as with `git`, it's recommended that you create a relatively short
 first line for this reason.
 
+`jj commit` is like running `jj describe` followed by a `jj new`. Many
+people find `jj commit` to be a useful tool when they start learning
+`jj`, but a lot of people end up not using it as much once they're more
+comfortable with the tool. There's nothing wrong with using it if it's
+the workflow you like, though!
+
 ### Change IDs
 
 You may have noticed change IDs use purely letters instead of letters and
