@@ -121,4 +121,153 @@ $ jj evolog --summary
 ○  skrvmwst hidden steve@steveklabnik.com 2025-02-05 22:43:34 f909120c
    (empty) (no description set)
 
+$ jj log
+@  skrvmwst steve@steveklabnik.com 2025-02-05 22:43:34 67bb43f3
+│  (no description set)
+○  xlpymuzl steve@steveklabnik.com 2025-02-05 22:43:34 git_head() 4c9d75dd
+│  hello and goodbye world
+○  tnmounps steve@steveklabnik.com 2025-02-05 22:43:34 goodbye-world 326253c2
+│  Goodbye, world!
+◆  ptrqnyzv steve@steveklabnik.com 2024-09-24 01:43:36 trunk 0c72abbb
+│  Hello, world!
+~
+
+$ jj restore src/main.rs
+Created skrvmwst 16fdca94 (empty) (no description set)
+Working copy now at: skrvmwst 16fdca94 (empty) (no description set)
+Parent commit      : xlpymuzl 4c9d75dd hello and goodbye world
+Added 0 files, modified 1 files, removed 0 files
+
+$ jj restore --from p src/main.rs
+Created skrvmwst fe82e41b (no description set)
+Working copy now at: skrvmwst fe82e41b (no description set)
+Parent commit      : xlpymuzl 4c9d75dd hello and goodbye world
+Added 0 files, modified 1 files, removed 0 files
+
+$ jj diff
+Modified regular file src/main.rs:
+   1    1: fn main() {
+   2    2:     println!("Hello, world!");
+   3     :     println!("Hello, world!");
+   4    3: }
+
+$ jj diff --git
+diff --git a/src/main.rs b/src/main.rs
+index 8fc7d1bdf3..e7a11a969c 100644
+--- a/src/main.rs
++++ b/src/main.rs
+@@ -1,4 +1,3 @@
+ fn main() {
+     println!("Hello, world!");
+-    println!("Hello, world!");
+ }
+
+$ jj config set --repo debug.randomness-seed 12351
+$ jj abandon -r x
+Abandoned commit xlpymuzl 4c9d75dd hello and goodbye world
+Rebased 1 descendant commits onto parents of abandoned commits
+Working copy now at: skrvmwst 77363927 (conflict) (no description set)
+Parent commit      : tnmounps 326253c2 goodbye-world | Goodbye, world!
+Added 0 files, modified 1 files, removed 0 files
+There are unresolved conflicts at these paths:
+src/main.rs    2-sided conflict
+New conflicts appeared in these commits:
+  skrvmwst 77363927 (conflict) (no description set)
+To resolve the conflicts, start by updating to it:
+  jj new skrvmwst
+Then use `jj resolve`, or edit the conflict markers in the file directly.
+Once the conflicts are resolved, you may want to inspect the result with `jj diff`.
+Then run `jj squash` to move the resolution into the conflicted commit.
+
+$ jj log
+@  skrvmwst steve@steveklabnik.com 2025-02-05 22:43:34 77363927 conflict
+│  (no description set)
+○  tnmounps steve@steveklabnik.com 2025-02-05 22:43:34 goodbye-world git_head() 326253c2
+│  Goodbye, world!
+◆  ptrqnyzv steve@steveklabnik.com 2024-09-24 01:43:36 trunk 0c72abbb
+│  Hello, world!
+~
+
+$ jj config set --repo debug.randomness-seed 12352
+$ jj show zz
+Commit ID: 0000000000000000000000000000000000000000
+Change ID: zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+Author   : (no name set) <(no email set)> (1970-01-01 00:00:00)
+Committer: (no name set) <(no email set)> (1970-01-01 00:00:00)
+
+    (no description set)
+
+
+$ jj config set --repo debug.randomness-seed 12354
+$ jj undo
+Undid operation: 99d1db4ac08e (2025-02-05 22:43:34) abandon commit 4c9d75dde9efa9cbfc4287410fd8d462550e0404
+Working copy now at: skrvmwst fe82e41b (no description set)
+Parent commit      : xlpymuzl 4c9d75dd hello and goodbye world
+Added 0 files, modified 1 files, removed 0 files
+Existing conflicts were resolved or abandoned from these commits:
+  skrvmwst hidden 77363927 (conflict) (no description set)
+
+$ jj log
+@  skrvmwst steve@steveklabnik.com 2025-02-05 22:43:34 fe82e41b
+│  (no description set)
+○  xlpymuzl steve@steveklabnik.com 2025-02-05 22:43:34 git_head() 4c9d75dd
+│  hello and goodbye world
+○  tnmounps steve@steveklabnik.com 2025-02-05 22:43:34 goodbye-world 326253c2
+│  Goodbye, world!
+◆  ptrqnyzv steve@steveklabnik.com 2024-09-24 01:43:36 trunk 0c72abbb
+│  Hello, world!
+~
+
+$ jj config set --repo debug.randomness-seed 12355
+$ jj undo
+Undid operation: b5cd71fddc6a (2025-02-05 22:43:34) undo operation 99d1db4ac08e10af9a3099a20bebc489de20829d0b76f7a7edc70c719100612f19bce4a0fd6fd9c3a3d6854e6789956822538d6b3f95aec1c7b40ca9ff979f06
+Working copy now at: skrvmwst 77363927 (conflict) (no description set)
+Parent commit      : tnmounps 326253c2 goodbye-world | Goodbye, world!
+Added 0 files, modified 1 files, removed 0 files
+There are unresolved conflicts at these paths:
+src/main.rs    2-sided conflict
+New conflicts appeared in these commits:
+  skrvmwst 77363927 (conflict) (no description set)
+To resolve the conflicts, start by updating to it:
+  jj new skrvmwst
+Then use `jj resolve`, or edit the conflict markers in the file directly.
+Once the conflicts are resolved, you may want to inspect the result with `jj diff`.
+Then run `jj squash` to move the resolution into the conflicted commit.
+
+$ jj config set --repo debug.randomness-seed 12356
+$ jj undo
+Undid operation: 3a2225c65dff (2025-02-05 22:43:34) undo operation b5cd71fddc6ad89ff54720e3e9e234c2a61c516a6c4f8fdc90b5ffc9d517141ff53933764855ea5af3187f3f1b46ad4ac5e2eb090d7c49729348252c036a6ced
+Working copy now at: skrvmwst fe82e41b (no description set)
+Parent commit      : xlpymuzl 4c9d75dd hello and goodbye world
+Added 0 files, modified 1 files, removed 0 files
+Existing conflicts were resolved or abandoned from these commits:
+  skrvmwst hidden 77363927 (conflict) (no description set)
+
+$ jj config set --repo debug.randomness-seed 12357
+$ jj new --before x --no-edit
+Created new commit pkwkovml acb427ce (empty) (no description set)
+Rebased 2 descendant commits
+Working copy now at: skrvmwst a8c12a49 (no description set)
+Parent commit      : xlpymuzl 02b6445a hello and goodbye world
+
+$ jj log
+@  skrvmwst steve@steveklabnik.com 2025-02-05 22:43:34 a8c12a49
+│  (no description set)
+○  xlpymuzl steve@steveklabnik.com 2025-02-05 22:43:34 git_head() 02b6445a
+│  hello and goodbye world
+○  pkwkovml steve@steveklabnik.com 2025-02-05 22:43:33 acb427ce
+│  (empty) (no description set)
+○  tnmounps steve@steveklabnik.com 2025-02-05 22:43:34 goodbye-world 326253c2
+│  Goodbye, world!
+◆  ptrqnyzv steve@steveklabnik.com 2024-09-24 01:43:36 trunk 0c72abbb
+│  Hello, world!
+~
+
+$ jj config set --repo debug.randomness-seed 12358
+$ jj abandon
+Abandoned commit skrvmwst a8c12a49 (no description set)
+Working copy now at: zokvruwu bc8316c4 (empty) (no description set)
+Parent commit      : xlpymuzl 02b6445a hello and goodbye world
+Added 0 files, modified 1 files, removed 0 files
+
 ```
