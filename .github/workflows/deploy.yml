@@ -30,7 +30,6 @@ jobs:
         run: |
           jj config set --user user.name "Steve Klabnik"
           jj config set --user user.email "steve@steveklabnik.com"
-          jj config set  ui.allow-init-native true --user
       - name: Build Book
         run: |
           cargo build && PATH=$PATH:target/debug/ mdbook build book

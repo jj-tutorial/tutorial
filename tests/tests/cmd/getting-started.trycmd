@@ -9,6 +9,9 @@ Added 4 files, modified 0 files, removed 0 files
 
 $ jj config set --repo ui.color never
 
+$ jj config set --repo debug.commit-timestamp "2025-02-05T22:43:34+00:00"
+$ jj config set --repo debug.op-timestamp "2025-02-05T22:43:34+00:00"
+
 $ tree . -a -L 1 --noreport
 .
 ├── .git
@@ -21,12 +24,13 @@ $ tree . -a -L 1 --noreport
 $ jj config set --repo debug.randomness-seed 12347
 
 $ jj log
-@  tnmounps steve@steveklabnik.com 2025-02-05 22:43:34 4fed3b0d
+@  tnmounps steve@steveklabnik.com 2025-02-06 09:43:34 4fed3b0d
 │  (empty) (no description set)
-◆  ptrqnyzv steve@steveklabnik.com 2024-09-24 01:43:36 trunk git_head() 0c72abbb
+◆  ptrqnyzv steve@steveklabnik.com 2024-09-24 12:43:36 trunk git_head() 0c72abbb
 │  Hello, world!
 ~
 
+$ jj config set --repo debug.randomness-seed 12348
 $ jj status
 The working copy is clean
 Working copy : tnmounps 4fed3b0d (empty) (no description set)
@@ -34,116 +38,129 @@ Parent commit: ptrqnyzv 0c72abbb trunk | Hello, world!
 
 $ sed -i 's/Hello/Goodbye/' src/main.rs
 
+$ jj config set --repo debug.randomness-seed 12349
 $ jj st
 Working copy changes:
 M src/main.rs
 Working copy : tnmounps 729bb51c (no description set)
 Parent commit: ptrqnyzv 0c72abbb trunk | Hello, world!
 
+$ jj config set --repo debug.randomness-seed 12350
 $ jj commit -m "Goodbye, world!"
-Working copy now at: xlpymuzl 95d5c471 (empty) (no description set)
+Working copy now at: opqvmvrn 95d5c471 (empty) (no description set)
 Parent commit      : tnmounps 326253c2 Goodbye, world!
 
+$ jj config set --repo debug.randomness-seed 12351
 $ jj log
-@  xlpymuzl steve@steveklabnik.com 2025-02-05 22:43:34 95d5c471
+@  opqvmvrn steve@steveklabnik.com 2025-02-06 09:43:34 95d5c471
 │  (empty) (no description set)
-○  tnmounps steve@steveklabnik.com 2025-02-05 22:43:34 git_head() 326253c2
+○  tnmounps steve@steveklabnik.com 2025-02-06 09:43:34 git_head() 326253c2
 │  Goodbye, world!
-◆  ptrqnyzv steve@steveklabnik.com 2024-09-24 01:43:36 trunk 0c72abbb
+◆  ptrqnyzv steve@steveklabnik.com 2024-09-24 12:43:36 trunk 0c72abbb
 │  Hello, world!
 ~
 
+$ jj config set --repo debug.randomness-seed 12352
 $ jj bookmark create goodbye-world -r @-
 Created 1 bookmarks pointing to tnmounps 326253c2 goodbye-world | Goodbye, world!
 
+$ jj config set --repo debug.randomness-seed 12353
 $ jj log
-@  xlpymuzl steve@steveklabnik.com 2025-02-05 22:43:34 95d5c471
+@  opqvmvrn steve@steveklabnik.com 2025-02-06 09:43:34 95d5c471
 │  (empty) (no description set)
-○  tnmounps steve@steveklabnik.com 2025-02-05 22:43:34 goodbye-world git_head() 326253c2
+○  tnmounps steve@steveklabnik.com 2025-02-06 09:43:34 goodbye-world git_head() 326253c2
 │  Goodbye, world!
-◆  ptrqnyzv steve@steveklabnik.com 2024-09-24 01:43:36 trunk 0c72abbb
+◆  ptrqnyzv steve@steveklabnik.com 2024-09-24 12:43:36 trunk 0c72abbb
 │  Hello, world!
 ~
 
-$ jj config set --repo debug.randomness-seed 12348
+$ jj config set --repo debug.randomness-seed 12344
 
 $ jj commit -m "hello and goodbye world"
-Working copy now at: uwytnpsl 1320ff3e (empty) (no description set)
-Parent commit      : xlpymuzl 604b85f8 (empty) hello and goodbye world
+Working copy now at: xowxxkro 1320ff3e (empty) (no description set)
+Parent commit      : opqvmvrn 604b85f8 (empty) hello and goodbye world
 
 $ sed -i '/println!("Goodbye, world!");/i\    println!("Hello, world!");' src/main.rs 
 $ sed -i 's/Goodbye/Hello/' src/main.rs
 
-$ jj config set --repo debug.randomness-seed 12349
+$ jj config set --repo debug.randomness-seed 12345
 
 $ jj squash
-Working copy now at: skrvmwst f909120c (empty) (no description set)
-Parent commit      : xlpymuzl 4c9d75dd hello and goodbye world
+Working copy now at: snwusnyo f909120c (empty) (no description set)
+Parent commit      : opqvmvrn 4c9d75dd hello and goodbye world
 
+$ jj config set --repo debug.randomness-seed 12346
 $ jj st
 The working copy is clean
-Working copy : skrvmwst f909120c (empty) (no description set)
-Parent commit: xlpymuzl 4c9d75dd hello and goodbye world
+Working copy : snwusnyo f909120c (empty) (no description set)
+Parent commit: opqvmvrn 4c9d75dd hello and goodbye world
 
+$ jj config set --repo debug.randomness-seed 12347
 $ jj log
-@  skrvmwst steve@steveklabnik.com 2025-02-05 22:43:34 f909120c
+@  snwusnyo steve@steveklabnik.com 2025-02-06 09:43:34 f909120c
 │  (empty) (no description set)
-○  xlpymuzl steve@steveklabnik.com 2025-02-05 22:43:34 git_head() 4c9d75dd
+○  opqvmvrn steve@steveklabnik.com 2025-02-06 09:43:34 git_head() 4c9d75dd
 │  hello and goodbye world
-○  tnmounps steve@steveklabnik.com 2025-02-05 22:43:34 goodbye-world 326253c2
+○  tnmounps steve@steveklabnik.com 2025-02-06 09:43:34 goodbye-world 326253c2
 │  Goodbye, world!
-◆  ptrqnyzv steve@steveklabnik.com 2024-09-24 01:43:36 trunk 0c72abbb
+◆  ptrqnyzv steve@steveklabnik.com 2024-09-24 12:43:36 trunk 0c72abbb
 │  Hello, world!
 ~
 
-$ jj config set --repo debug.randomness-seed 12350
+$ jj config set --repo debug.randomness-seed 12348
 $ jj show zz
 Commit ID: 0000000000000000000000000000000000000000
 Change ID: zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
-Author   : (no name set) <(no email set)> (1970-01-01 00:00:00)
-Committer: (no name set) <(no email set)> (1970-01-01 00:00:00)
+Author   : (no name set) <(no email set)> (1970-01-01 11:00:00)
+Committer: (no name set) <(no email set)> (1970-01-01 11:00:00)
 
     (no description set)
 
 
 $ sed -i 's/Hello/Goodbye/' src/main.rs
 
+$ jj config set --repo debug.randomness-seed 12349
 $ jj st
 Working copy changes:
 M src/main.rs
-Working copy : skrvmwst 67bb43f3 (no description set)
-Parent commit: xlpymuzl 4c9d75dd hello and goodbye world
+Working copy : snwusnyo 67bb43f3 (no description set)
+Parent commit: opqvmvrn 4c9d75dd hello and goodbye world
 
+$ jj config set --repo debug.randomness-seed 12350
 $ jj evolog --summary
-@  skrvmwst steve@steveklabnik.com 2025-02-05 22:43:34 67bb43f3
+@  snwusnyo steve@steveklabnik.com 2025-02-06 09:43:34 67bb43f3
 │  (no description set)
 │  M src/main.rs
-○  skrvmwst hidden steve@steveklabnik.com 2025-02-05 22:43:34 f909120c
+○  snwusnyo hidden steve@steveklabnik.com 2025-02-06 09:43:34 f909120c
    (empty) (no description set)
 
+$ jj config set --repo debug.randomness-seed 12351
 $ jj log
-@  skrvmwst steve@steveklabnik.com 2025-02-05 22:43:34 67bb43f3
+@  snwusnyo steve@steveklabnik.com 2025-02-06 09:43:34 67bb43f3
 │  (no description set)
-○  xlpymuzl steve@steveklabnik.com 2025-02-05 22:43:34 git_head() 4c9d75dd
+○  opqvmvrn steve@steveklabnik.com 2025-02-06 09:43:34 git_head() 4c9d75dd
 │  hello and goodbye world
-○  tnmounps steve@steveklabnik.com 2025-02-05 22:43:34 goodbye-world 326253c2
+○  tnmounps steve@steveklabnik.com 2025-02-06 09:43:34 goodbye-world 326253c2
 │  Goodbye, world!
-◆  ptrqnyzv steve@steveklabnik.com 2024-09-24 01:43:36 trunk 0c72abbb
+◆  ptrqnyzv steve@steveklabnik.com 2024-09-24 12:43:36 trunk 0c72abbb
 │  Hello, world!
 ~
 
+$ jj config set --repo debug.randomness-seed 12352
 $ jj restore src/main.rs
-Created skrvmwst 16fdca94 (empty) (no description set)
-Working copy now at: skrvmwst 16fdca94 (empty) (no description set)
-Parent commit      : xlpymuzl 4c9d75dd hello and goodbye world
+Created snwusnyo 16fdca94 (empty) (no description set)
+Working copy now at: snwusnyo 16fdca94 (empty) (no description set)
+Parent commit      : opqvmvrn 4c9d75dd hello and goodbye world
 Added 0 files, modified 1 files, removed 0 files
 
+$ jj config set --repo debug.randomness-seed 12353
 $ jj restore --from p src/main.rs
-Created skrvmwst fe82e41b (no description set)
-Working copy now at: skrvmwst fe82e41b (no description set)
-Parent commit      : xlpymuzl 4c9d75dd hello and goodbye world
+Created snwusnyo fe82e41b (no description set)
+Working copy now at: snwusnyo fe82e41b (no description set)
+Parent commit      : opqvmvrn 4c9d75dd hello and goodbye world
 Added 0 files, modified 1 files, removed 0 files
 
+$ jj config set --repo debug.randomness-seed 12354
 $ jj diff
 Modified regular file src/main.rs:
    1    1: fn main() {
@@ -151,6 +168,7 @@ Modified regular file src/main.rs:
    3     :     println!("Hello, world!");
    4    3: }
 
+$ jj config set --repo debug.randomness-seed 12355
 $ jj diff --git
 diff --git a/src/main.rs b/src/main.rs
 index 8fc7d1bdf3..e7a11a969c 100644
@@ -162,112 +180,87 @@ index 8fc7d1bdf3..e7a11a969c 100644
 -    println!("Hello, world!");
  }
 
-$ jj config set --repo debug.randomness-seed 12351
-$ jj abandon -r x
-Abandoned commit xlpymuzl 4c9d75dd hello and goodbye world
-Rebased 1 descendant commits onto parents of abandoned commits
-Working copy now at: skrvmwst 77363927 (conflict) (no description set)
-Parent commit      : tnmounps 326253c2 goodbye-world | Goodbye, world!
-Added 0 files, modified 1 files, removed 0 files
-There are unresolved conflicts at these paths:
-src/main.rs    2-sided conflict
-New conflicts appeared in these commits:
-  skrvmwst 77363927 (conflict) (no description set)
-To resolve the conflicts, start by updating to it:
-  jj new skrvmwst
-Then use `jj resolve`, or edit the conflict markers in the file directly.
-Once the conflicts are resolved, you may want to inspect the result with `jj diff`.
-Then run `jj squash` to move the resolution into the conflicted commit.
-
-$ jj log
-@  skrvmwst steve@steveklabnik.com 2025-02-05 22:43:34 77363927 conflict
-│  (no description set)
-○  tnmounps steve@steveklabnik.com 2025-02-05 22:43:34 goodbye-world git_head() 326253c2
-│  Goodbye, world!
-◆  ptrqnyzv steve@steveklabnik.com 2024-09-24 01:43:36 trunk 0c72abbb
-│  Hello, world!
-~
-
-$ jj config set --repo debug.randomness-seed 12352
-$ jj show zz
-Commit ID: 0000000000000000000000000000000000000000
-Change ID: zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
-Author   : (no name set) <(no email set)> (1970-01-01 00:00:00)
-Committer: (no name set) <(no email set)> (1970-01-01 00:00:00)
-
-    (no description set)
-
-
-$ jj config set --repo debug.randomness-seed 12354
-$ jj undo
-Undid operation: 99d1db4ac08e (2025-02-05 22:43:34) abandon commit 4c9d75dde9efa9cbfc4287410fd8d462550e0404
-Working copy now at: skrvmwst fe82e41b (no description set)
-Parent commit      : xlpymuzl 4c9d75dd hello and goodbye world
-Added 0 files, modified 1 files, removed 0 files
-Existing conflicts were resolved or abandoned from these commits:
-  skrvmwst hidden 77363927 (conflict) (no description set)
-
-$ jj log
-@  skrvmwst steve@steveklabnik.com 2025-02-05 22:43:34 fe82e41b
-│  (no description set)
-○  xlpymuzl steve@steveklabnik.com 2025-02-05 22:43:34 git_head() 4c9d75dd
-│  hello and goodbye world
-○  tnmounps steve@steveklabnik.com 2025-02-05 22:43:34 goodbye-world 326253c2
-│  Goodbye, world!
-◆  ptrqnyzv steve@steveklabnik.com 2024-09-24 01:43:36 trunk 0c72abbb
-│  Hello, world!
-~
-
-$ jj config set --repo debug.randomness-seed 12355
-$ jj undo
-Undid operation: b5cd71fddc6a (2025-02-05 22:43:34) undo operation 99d1db4ac08e10af9a3099a20bebc489de20829d0b76f7a7edc70c719100612f19bce4a0fd6fd9c3a3d6854e6789956822538d6b3f95aec1c7b40ca9ff979f06
-Working copy now at: skrvmwst 77363927 (conflict) (no description set)
-Parent commit      : tnmounps 326253c2 goodbye-world | Goodbye, world!
-Added 0 files, modified 1 files, removed 0 files
-There are unresolved conflicts at these paths:
-src/main.rs    2-sided conflict
-New conflicts appeared in these commits:
-  skrvmwst 77363927 (conflict) (no description set)
-To resolve the conflicts, start by updating to it:
-  jj new skrvmwst
-Then use `jj resolve`, or edit the conflict markers in the file directly.
-Once the conflicts are resolved, you may want to inspect the result with `jj diff`.
-Then run `jj squash` to move the resolution into the conflicted commit.
-
 $ jj config set --repo debug.randomness-seed 12356
-$ jj undo
-Undid operation: 3a2225c65dff (2025-02-05 22:43:34) undo operation b5cd71fddc6ad89ff54720e3e9e234c2a61c516a6c4f8fdc90b5ffc9d517141ff53933764855ea5af3187f3f1b46ad4ac5e2eb090d7c49729348252c036a6ced
-Working copy now at: skrvmwst fe82e41b (no description set)
-Parent commit      : xlpymuzl 4c9d75dd hello and goodbye world
-Added 0 files, modified 1 files, removed 0 files
-Existing conflicts were resolved or abandoned from these commits:
-  skrvmwst hidden 77363927 (conflict) (no description set)
+$ jj abandon -r x
+? 1
+Error: Revision `x` doesn't exist
 
 $ jj config set --repo debug.randomness-seed 12357
-$ jj new --before x --no-edit
-Created new commit pkwkovml acb427ce (empty) (no description set)
-Rebased 2 descendant commits
-Working copy now at: skrvmwst a8c12a49 (no description set)
-Parent commit      : xlpymuzl 02b6445a hello and goodbye world
-
 $ jj log
-@  skrvmwst steve@steveklabnik.com 2025-02-05 22:43:34 a8c12a49
+@  snwusnyo steve@steveklabnik.com 2025-02-06 09:43:34 fe82e41b
 │  (no description set)
-○  xlpymuzl steve@steveklabnik.com 2025-02-05 22:43:34 git_head() 02b6445a
+○  opqvmvrn steve@steveklabnik.com 2025-02-06 09:43:34 git_head() 4c9d75dd
 │  hello and goodbye world
-○  pkwkovml steve@steveklabnik.com 2025-02-05 22:43:33 acb427ce
-│  (empty) (no description set)
-○  tnmounps steve@steveklabnik.com 2025-02-05 22:43:34 goodbye-world 326253c2
+○  tnmounps steve@steveklabnik.com 2025-02-06 09:43:34 goodbye-world 326253c2
 │  Goodbye, world!
-◆  ptrqnyzv steve@steveklabnik.com 2024-09-24 01:43:36 trunk 0c72abbb
+◆  ptrqnyzv steve@steveklabnik.com 2024-09-24 12:43:36 trunk 0c72abbb
 │  Hello, world!
 ~
 
 $ jj config set --repo debug.randomness-seed 12358
-$ jj abandon
-Abandoned commit skrvmwst a8c12a49 (no description set)
-Working copy now at: zokvruwu bc8316c4 (empty) (no description set)
-Parent commit      : xlpymuzl 02b6445a hello and goodbye world
+$ jj show zz
+Commit ID: 0000000000000000000000000000000000000000
+Change ID: zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+Author   : (no name set) <(no email set)> (1970-01-01 11:00:00)
+Committer: (no name set) <(no email set)> (1970-01-01 11:00:00)
+
+    (no description set)
+
+
+$ jj config set --repo debug.randomness-seed 12359
+$ jj undo
+Undid operation: 09b43db27b4b (2025-02-06 09:43:34) restore into commit 16fdca949f114b66e440f33444abd525763d0062
+Working copy now at: snwusnyo 16fdca94 (empty) (no description set)
+Parent commit      : opqvmvrn 4c9d75dd hello and goodbye world
 Added 0 files, modified 1 files, removed 0 files
+
+$ jj config set --repo debug.randomness-seed 12360
+$ jj log
+@  snwusnyo steve@steveklabnik.com 2025-02-06 09:43:33 16fdca94
+│  (empty) (no description set)
+○  opqvmvrn steve@steveklabnik.com 2025-02-06 09:43:34 git_head() 4c9d75dd
+│  hello and goodbye world
+○  tnmounps steve@steveklabnik.com 2025-02-06 09:43:34 goodbye-world 326253c2
+│  Goodbye, world!
+◆  ptrqnyzv steve@steveklabnik.com 2024-09-24 12:43:36 trunk 0c72abbb
+│  Hello, world!
+~
+
+$ jj config set --repo debug.randomness-seed 12361
+$ jj undo
+Undid operation: 4b333db019bb (2025-02-06 09:43:34) undo operation 09b43db27b4b86aa08ec75dc354c7726fb1e0061788732efbc44505067fe8fa56b3aaa9202939d4095a995ce95c8f0551a68e48f9c4bfc967bcae5e9a05eebcb
+Working copy now at: snwusnyo fe82e41b (no description set)
+Parent commit      : opqvmvrn 4c9d75dd hello and goodbye world
+Added 0 files, modified 1 files, removed 0 files
+
+$ jj config set --repo debug.randomness-seed 12362
+$ jj undo
+Undid operation: 8f227826566b (2025-02-06 09:43:34) undo operation 4b333db019bb6e69f60de88d609a83377901078b05a916106171e26b32a230b2577dfb19956ad3583eb2841230467134c28870f48650db802aa13247372b18f6
+Working copy now at: snwusnyo 16fdca94 (empty) (no description set)
+Parent commit      : opqvmvrn 4c9d75dd hello and goodbye world
+Added 0 files, modified 1 files, removed 0 files
+
+$ jj config set --repo debug.randomness-seed 12363
+$ jj new --before x --no-edit
+? 1
+Error: Revision `x` doesn't exist
+
+$ jj config set --repo debug.randomness-seed 12364
+$ jj log
+@  snwusnyo steve@steveklabnik.com 2025-02-06 09:43:33 16fdca94
+│  (empty) (no description set)
+○  opqvmvrn steve@steveklabnik.com 2025-02-06 09:43:34 git_head() 4c9d75dd
+│  hello and goodbye world
+○  tnmounps steve@steveklabnik.com 2025-02-06 09:43:34 goodbye-world 326253c2
+│  Goodbye, world!
+◆  ptrqnyzv steve@steveklabnik.com 2024-09-24 12:43:36 trunk 0c72abbb
+│  Hello, world!
+~
+
+$ jj config set --repo debug.randomness-seed 12365
+$ jj abandon
+Abandoned commit snwusnyo 16fdca94 (empty) (no description set)
+Working copy now at: mtuyzlkn c3dd0352 (empty) (no description set)
+Parent commit      : opqvmvrn 4c9d75dd hello and goodbye world
 
 ```
