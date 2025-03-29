@@ -6,9 +6,9 @@ to talk about the topic with GitHub as the specific example. No shade to the
 other hosts, I just feel that trying to speak about this in the abstract
 would make it harder to understand.
 
-Let's take one last look at that `jj log` output:
+Let's look at that `jj log` output again:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:43:50}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:49:56}} 
 
 Do you see that little `trunk` over on the right there? That is a *bookmark*
 in `jj`, and it's how `jj` understands git branches. `trunk` is the name of
@@ -24,7 +24,7 @@ locally, but when we interact with GitHub, it needs a branch name.
 
 To create a bookmark, we can use `jj bookmark`:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:52:53}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:59:61}} 
 
 `jj bookmark create` takes a name for the bookmark, and then we also pass a `-r` flag.
 This is short for "revision," which is a sort of catch-all name for the various kinds
@@ -33,10 +33,23 @@ the change ID. In this case, we pass `@-`, which means "the parent of `@`."
 
 Let's look at our log:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:55:62}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:63:70}} 
 
 We can now see `goodbye-world` listed on the right. Great! Let's push that up
-to GitHub:
+to GitHub. But before we do, a warning:
+
+<div class="warning">
+Because this involves interacting with the outside world, and we aren't going to
+end up merging this PR, the next section will start off with the repository in
+the state that it's currently in at this moment. So if you'd like to follow
+along, with the next section, you may want to just read this next section instead
+of doing it.
+
+You can also just make a copy of your repository, and try this out from the copy,
+rather than your local repository.
+</div>
+
+Like I said, let's push it to `GitHub`:
 
 ```console
 $ jj git push --allow-new
