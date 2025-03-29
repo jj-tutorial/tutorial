@@ -54,7 +54,7 @@ Because we don't have a index, we can do that auto-snapshotting of your
 working directory, removing the distinction between the working copy and a change.
 This makes it easy to not accidentally lose work. You know how people say it's
 hard to cause data loss in git? They're not wrong, but with `jj`, it's even
-moreso. Having the working copy, index, and commit contents be three
+more so. Having the working copy, index, and commit contents be three
 different things, where only one of them is permanently stored, means you can
 run commands that end up losing data. Have you ever run `git reset --hard` and
 realized that there was something in your index you forgot to save first?
