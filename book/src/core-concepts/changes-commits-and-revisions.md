@@ -6,7 +6,7 @@ Let's talk about them, as well as two related concepts: *commit*s and
 
 ## Changes
 
-Changes serve the same pupose, conceptually, that commits do in `git`: they're a
+Changes serve the same purpose, conceptually, that commits do in `git`: they're a
 snapshot of your project, and the graph of these changes forms a sort of
 timeline of the history of the project.
 

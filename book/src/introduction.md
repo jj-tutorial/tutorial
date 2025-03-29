@@ -17,7 +17,7 @@ and we will sometimes compare and contrast with it, since it is the most popular
 VCS in current use. You don't need to be a `git` expert to read this tutorial.
 
 So why should you care about `jj`? Well, it has a property that's pretty rare in
-the world of programming: it is both simpler and easier than other DCVSes, but
+the world of programming: it is both simpler and easier than other DVCSes, but
 at the same time, it is more powerful. We're often
 taught, correctly, that there exist tradeoffs when we make choices. And
 "powerful but complex" is a very common tradeoff. That power has been worth it,

@@ -1,6 +1,6 @@
 # Interacting with GitHub
 
-Breifly, all of these instructions should work with any of the various
+Briefly, all of these instructions should work with any of the various
 `git` forges out there, but since GitHub is very popular, I'm going
 to talk about the topic with GitHub as the specific example. No shade to the
 other hosts, I just feel that trying to speak about this in the abstract
@@ -154,7 +154,7 @@ Parent commit      : oltlpuxu 82008a30 trunk | (empty) Merge pull request #4 fro
 ```
 
 Don't worry about our old change; because it was empty and had no description, `jj`
-automatically abandons it, so you won't have a bunch of empty stuff literring up your
+automatically abandons it, so you won't have a bunch of empty stuff littering up your
 repository.
 
 We'll talk about it more in the next section, but we're using `new` here in a way similar
@@ -214,7 +214,7 @@ of `upstream`, it's common to configure `jj` so that `jj git fetch` pulls
 from `upstream` by default, and `jj git push` pushes to `origin` by default.
 
 We can do that via `jj config`. `jj` has per-repository settings as well as
-per-user settings. I think this one is more appropriate for this repsitory
+per-user settings. I think this one is more appropriate for this repository
 only, so:
 
 ```console
