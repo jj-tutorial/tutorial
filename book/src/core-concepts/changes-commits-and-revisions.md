@@ -80,7 +80,7 @@ one, it will refuse unless you pass `--ignore-immutable` as an argument.
 
 Let's look at `jj log`:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:81:90}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:63:70}} 
 
 We have the green `@`, but its parent instead has a `○`. This change
 is mutable. But what about `p`? It has a `◆`. This change is immutable.
@@ -103,7 +103,7 @@ to us right now.
 We can use `jj show` to show information about changes. The root change
 has a change ID of all `z`s, let's check it out:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:93:99}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:73:81}} 
 
 Pretty fun. Wait, what's that `Commit ID` doing there? Okay, let's
 talk about commits.
@@ -117,14 +117,15 @@ So we've been talking about how changes are different than `git`'s commits...
 but `jj` also has commits. Let me explain. Let's use `jj st` to look at our
 current change:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:76:79}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:83:87}} 
 
 Do you see how we have four identifiers there?
 
-```text
-skrvmwst f1d3d6c2
-xlpymuzl af847aae
-```
+<code class="nohighlight hljs">
+<b><span style="color:var(--jj-bright-magenta,#f5f)">o<span style="color:var(--jj-bright-black,#555)">pqvmvrn</span></span> <span style="color:var(--jj-bright-blue,#55f)">9<span style="color:var(--jj-bright-black,#555)">5d5c471</span></span></b>
+<br />
+<b><span style="color:var(--jj-magenta,#a0a)">t</span></b><span style="color:var(--jj-bright-black,#555)">nmounps</span> <b><span style="color:var(--jj-blue,#00a)">3</span></b><span style="color:var(--jj-bright-black,#555)">26253c2</span>
+</code>
 
 The two on the left are change IDs, but the two on the right are commit IDs.
 What are commits for? Well, whenever you modify a change, that has to be stored
@@ -133,16 +134,16 @@ the contents of the commit, when you create a new git commit, you're also going
 to get a different ID. Here, let's give it a try: modify `src/main.rs`, in any
 way that you'd like. Then we'll run `jj st` again:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:103:107}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:92:97}} 
 
-`s` used to have a commit ID of `f1d3d6c2`, but now it's `df7c31c8`. Our change
+`o` used to have a commit ID of `95d5c471`, but now it's `c920ae70`. Our change
 ID remains stable, but the commit ID will change over time.
 
 This is very powerful! Part 4 of the tutorial is titled "Fixing Problems," and
 a lot of the stuff we will talk about there is powered by commits. We can
 use `jj evolog`, the "evolution log," to see how a change has evolved over time:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:109:114}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:99:106}} 
 
 There are a lot of flags to control `jj evolog`'s output. I've chosen the
 `summary` flag here to show which files we changed.

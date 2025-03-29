@@ -1,5 +1,11 @@
 # The Squash Workflow
 
+<div class="warning">
+All of the code samples in this chapter are going to be messed up for now, I need
+to write the intervening chapters before they'll make any sense. This is just
+content ported from the old tutorial until I'm done with the rest of it.
+</div>
+
 So, in the introduction to this tutorial, I made the claim that `jj` is simpler
 yet just as powerful as `git` is. But I also just told you that `jj` does not have
 an index. Well, the thing is, we can still do what the index lets us do with `git`,

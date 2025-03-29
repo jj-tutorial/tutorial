@@ -74,197 +74,175 @@ $ jj log
 │  Hello, world!
 ~
 
-$ jj config set --repo debug.randomness-seed 12344
+$ jj config set --repo debug.randomness-seed 12354
+$ jj show zz
+Commit ID: 0000000000000000000000000000000000000000
+Change ID: zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+Author   : (no name set) <(no email set)> (1970-01-01 11:00:00)
+Committer: (no name set) <(no email set)> (1970-01-01 11:00:00)
 
-$ jj commit -m "hello and goodbye world"
-Working copy now at: xowxxkro 1320ff3e (empty) (no description set)
-Parent commit      : opqvmvrn 604b85f8 (empty) hello and goodbye world
+    (no description set)
+
+
+$ jj config set --repo debug.randomness-seed 12355
+$ jj st
+The working copy has no changes.
+Working copy : opqvmvrn 95d5c471 (empty) (no description set)
+Parent commit: tnmounps 326253c2 goodbye-world | Goodbye, world!
+
+$ jj config set --repo debug.randomness-seed 12356
 
 $ sed -i '/println!("Goodbye, world!");/i\    println!("Hello, world!");' src/main.rs 
 $ sed -i 's/Goodbye/Hello/' src/main.rs
 
-$ jj config set --repo debug.randomness-seed 12345
-
-$ jj squash
-Working copy now at: snwusnyo f909120c (empty) (no description set)
-Parent commit      : opqvmvrn 4c9d75dd hello and goodbye world
-
-$ jj config set --repo debug.randomness-seed 12346
-$ jj st
-The working copy has no changes.
-Working copy : snwusnyo f909120c (empty) (no description set)
-Parent commit: opqvmvrn 4c9d75dd hello and goodbye world
-
-$ jj config set --repo debug.randomness-seed 12347
-$ jj log
-@  snwusnyo steve@steveklabnik.com 2025-02-06 09:43:34 f909120c
-│  (empty) (no description set)
-○  opqvmvrn steve@steveklabnik.com 2025-02-06 09:43:34 git_head() 4c9d75dd
-│  hello and goodbye world
-○  tnmounps steve@steveklabnik.com 2025-02-06 09:43:34 goodbye-world 326253c2
-│  Goodbye, world!
-◆  ptrqnyzv steve@steveklabnik.com 2024-09-24 12:43:36 trunk 0c72abbb
-│  Hello, world!
-~
-
-$ jj config set --repo debug.randomness-seed 12348
-$ jj show zz
-Commit ID: 0000000000000000000000000000000000000000
-Change ID: zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
-Author   : (no name set) <(no email set)> (1970-01-01 11:00:00)
-Committer: (no name set) <(no email set)> (1970-01-01 11:00:00)
-
-    (no description set)
-
-
-$ sed -i 's/Hello/Goodbye/' src/main.rs
-
-$ jj config set --repo debug.randomness-seed 12349
+$ jj config set --repo debug.randomness-seed 12357
 $ jj st
 Working copy changes:
 M src/main.rs
-Working copy : snwusnyo 67bb43f3 (no description set)
-Parent commit: opqvmvrn 4c9d75dd hello and goodbye world
+Working copy : opqvmvrn c920ae70 (no description set)
+Parent commit: tnmounps 326253c2 goodbye-world | Goodbye, world!
 
-$ jj config set --repo debug.randomness-seed 12350
+$ jj config set --repo debug.randomness-seed 12358
 $ jj evolog --summary
-@  snwusnyo steve@steveklabnik.com 2025-02-06 09:43:34 67bb43f3
+@  opqvmvrn steve@steveklabnik.com 2025-02-06 09:43:34 c920ae70
 │  (no description set)
 │  M src/main.rs
-○  snwusnyo hidden steve@steveklabnik.com 2025-02-06 09:43:34 f909120c
+○  opqvmvrn hidden steve@steveklabnik.com 2025-02-06 09:43:34 95d5c471
    (empty) (no description set)
 
-$ jj config set --repo debug.randomness-seed 12351
-$ jj log
-@  snwusnyo steve@steveklabnik.com 2025-02-06 09:43:34 67bb43f3
-│  (no description set)
-○  opqvmvrn steve@steveklabnik.com 2025-02-06 09:43:34 git_head() 4c9d75dd
-│  hello and goodbye world
-○  tnmounps steve@steveklabnik.com 2025-02-06 09:43:34 goodbye-world 326253c2
-│  Goodbye, world!
-◆  ptrqnyzv steve@steveklabnik.com 2024-09-24 12:43:36 trunk 0c72abbb
-│  Hello, world!
-~
+$ jj config set --repo debug.randomness-seed 12359
+$ jj st
+Working copy changes:
+M src/main.rs
+Working copy : opqvmvrn c920ae70 (no description set)
+Parent commit: tnmounps 326253c2 goodbye-world | Goodbye, world!
 
-$ jj config set --repo debug.randomness-seed 12352
+$ jj config set --repo debug.randomness-seed 12360
 $ jj restore src/main.rs
-Created snwusnyo 16fdca94 (empty) (no description set)
-Working copy now at: snwusnyo 16fdca94 (empty) (no description set)
-Parent commit      : opqvmvrn 4c9d75dd hello and goodbye world
+Created opqvmvrn acb427ce (empty) (no description set)
+Working copy now at: opqvmvrn acb427ce (empty) (no description set)
+Parent commit      : tnmounps 326253c2 goodbye-world | Goodbye, world!
 Added 0 files, modified 1 files, removed 0 files
 
-$ jj config set --repo debug.randomness-seed 12353
+$ jj config set --repo debug.randomness-seed 12361
 $ jj restore --from p src/main.rs
-Created snwusnyo fe82e41b (no description set)
-Working copy now at: snwusnyo fe82e41b (no description set)
-Parent commit      : opqvmvrn 4c9d75dd hello and goodbye world
+Created opqvmvrn b37efa21 (no description set)
+Working copy now at: opqvmvrn b37efa21 (no description set)
+Parent commit      : tnmounps 326253c2 goodbye-world | Goodbye, world!
 Added 0 files, modified 1 files, removed 0 files
 
-$ jj config set --repo debug.randomness-seed 12354
+$ jj config set --repo debug.randomness-seed 12362
 $ jj diff
 Modified regular file src/main.rs:
    1    1: fn main() {
-   2    2:     println!("Hello, world!");
-   3     :     println!("Hello, world!");
-   4    3: }
-
-$ jj config set --repo debug.randomness-seed 12355
-$ jj diff --git
-diff --git a/src/main.rs b/src/main.rs
-index 8fc7d1bdf3..e7a11a969c 100644
---- a/src/main.rs
-+++ b/src/main.rs
-@@ -1,4 +1,3 @@
- fn main() {
-     println!("Hello, world!");
--    println!("Hello, world!");
- }
-
-$ jj config set --repo debug.randomness-seed 12356
-$ jj abandon -r x
-? 1
-Error: Revision `x` doesn't exist
-
-$ jj config set --repo debug.randomness-seed 12357
-$ jj log
-@  snwusnyo steve@steveklabnik.com 2025-02-06 09:43:34 fe82e41b
-│  (no description set)
-○  opqvmvrn steve@steveklabnik.com 2025-02-06 09:43:34 git_head() 4c9d75dd
-│  hello and goodbye world
-○  tnmounps steve@steveklabnik.com 2025-02-06 09:43:34 goodbye-world 326253c2
-│  Goodbye, world!
-◆  ptrqnyzv steve@steveklabnik.com 2024-09-24 12:43:36 trunk 0c72abbb
-│  Hello, world!
-~
-
-$ jj config set --repo debug.randomness-seed 12358
-$ jj show zz
-Commit ID: 0000000000000000000000000000000000000000
-Change ID: zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
-Author   : (no name set) <(no email set)> (1970-01-01 11:00:00)
-Committer: (no name set) <(no email set)> (1970-01-01 11:00:00)
-
-    (no description set)
-
-
-$ jj config set --repo debug.randomness-seed 12359
-$ jj undo
-Undid operation: 09b43db27b4b (2025-02-06 09:43:34) restore into commit 16fdca949f114b66e440f33444abd525763d0062
-Working copy now at: snwusnyo 16fdca94 (empty) (no description set)
-Parent commit      : opqvmvrn 4c9d75dd hello and goodbye world
-Added 0 files, modified 1 files, removed 0 files
-
-$ jj config set --repo debug.randomness-seed 12360
-$ jj log
-@  snwusnyo steve@steveklabnik.com 2025-02-06 09:43:33 16fdca94
-│  (empty) (no description set)
-○  opqvmvrn steve@steveklabnik.com 2025-02-06 09:43:34 git_head() 4c9d75dd
-│  hello and goodbye world
-○  tnmounps steve@steveklabnik.com 2025-02-06 09:43:34 goodbye-world 326253c2
-│  Goodbye, world!
-◆  ptrqnyzv steve@steveklabnik.com 2024-09-24 12:43:36 trunk 0c72abbb
-│  Hello, world!
-~
-
-$ jj config set --repo debug.randomness-seed 12361
-$ jj undo
-Undid operation: 4b333db019bb (2025-02-06 09:43:34) undo operation 09b43db27b4b86aa08ec75dc354c7726fb1e0061788732efbc44505067fe8fa56b3aaa9202939d4095a995ce95c8f0551a68e48f9c4bfc967bcae5e9a05eebcb
-Working copy now at: snwusnyo fe82e41b (no description set)
-Parent commit      : opqvmvrn 4c9d75dd hello and goodbye world
-Added 0 files, modified 1 files, removed 0 files
-Hint: This action reverted an 'undo' operation. The repository is now in the same state as it was before the original 'undo'.
-Hint: If your goal is to undo multiple operations, consider using `jj op log` to see past states, and `jj op restore` to restore one of these states.
-
-$ jj config set --repo debug.randomness-seed 12362
-$ jj undo
-Undid operation: 8f227826566b (2025-02-06 09:43:34) undo operation 4b333db019bb6e69f60de88d609a83377901078b05a916106171e26b32a230b2577dfb19956ad3583eb2841230467134c28870f48650db802aa13247372b18f6
-Working copy now at: snwusnyo 16fdca94 (empty) (no description set)
-Parent commit      : opqvmvrn 4c9d75dd hello and goodbye world
-Added 0 files, modified 1 files, removed 0 files
-Hint: This action reverted an 'undo' operation. The repository is now in the same state as it was before the original 'undo'.
-Hint: If your goal is to undo multiple operations, consider using `jj op log` to see past states, and `jj op restore` to restore one of these states.
+   2    2:     println!("GoodbyeHello, world!");
+   3    3: }
 
 $ jj config set --repo debug.randomness-seed 12363
-$ jj new --before x --no-edit
-? 1
-Error: Revision `x` doesn't exist
+$ jj diff --git
+diff --git a/src/main.rs b/src/main.rs
+index 865c8c8225..e7a11a969c 100644
+--- a/src/main.rs
++++ b/src/main.rs
+@@ -1,3 +1,3 @@
+ fn main() {
+-    println!("Goodbye, world!");
++    println!("Hello, world!");
+ }
 
 $ jj config set --repo debug.randomness-seed 12364
+$ jj abandon
+Abandoned commit opqvmvrn b37efa21 (no description set)
+Working copy now at: nvnlxpxw 0d1ce6d4 (empty) (no description set)
+Parent commit      : tnmounps 326253c2 goodbye-world | Goodbye, world!
+Added 0 files, modified 1 files, removed 0 files
+
+$ jj config set --repo debug.randomness-seed 12365
+$ jj abandon -r t
+Abandoned commit tnmounps 326253c2 goodbye-world | Goodbye, world!
+Deleted bookmarks: goodbye-world
+Rebased 1 descendant commits onto parents of abandoned commits
+Working copy now at: nvnlxpxw dfde4351 (empty) (no description set)
+Parent commit      : ptrqnyzv 0c72abbb trunk | Hello, world!
+Added 0 files, modified 1 files, removed 0 files
+
+$ jj config set --repo debug.randomness-seed 12366
 $ jj log
-@  snwusnyo steve@steveklabnik.com 2025-02-06 09:43:33 16fdca94
+@  nvnlxpxw steve@steveklabnik.com 2025-02-06 09:43:33 dfde4351
 │  (empty) (no description set)
-○  opqvmvrn steve@steveklabnik.com 2025-02-06 09:43:34 git_head() 4c9d75dd
-│  hello and goodbye world
+◆  ptrqnyzv steve@steveklabnik.com 2024-09-24 12:43:36 trunk git_head() 0c72abbb
+│  Hello, world!
+~
+
+$ jj config set --repo debug.randomness-seed 12367
+$ jj undo
+Undid operation: 57a0967c9ede (2025-02-06 09:43:34) abandon commit 326253c27c9867c92d11422133a39b67fdcb602f
+Working copy now at: nvnlxpxw 0d1ce6d4 (empty) (no description set)
+Parent commit      : tnmounps 326253c2 goodbye-world | Goodbye, world!
+Added 0 files, modified 1 files, removed 0 files
+
+$ jj config set --repo debug.randomness-seed 12368
+$ jj log
+@  nvnlxpxw steve@steveklabnik.com 2025-02-06 09:43:32 0d1ce6d4
+│  (empty) (no description set)
+○  tnmounps steve@steveklabnik.com 2025-02-06 09:43:34 goodbye-world git_head() 326253c2
+│  Goodbye, world!
+◆  ptrqnyzv steve@steveklabnik.com 2024-09-24 12:43:36 trunk 0c72abbb
+│  Hello, world!
+~
+
+$ jj config set --repo debug.randomness-seed 12369
+$ jj undo
+Undid operation: f4d229f0501c (2025-02-06 09:43:34) undo operation 57a0967c9ede1d9ea8a06f733fddf8cf6bcd632857444936fc8f1b2d17bfdb8e1e525cc3baa3264afb92adb480499cc23fde7348ca51fc8807081462071fe211
+Working copy now at: nvnlxpxw dfde4351 (empty) (no description set)
+Parent commit      : ptrqnyzv 0c72abbb trunk | Hello, world!
+Added 0 files, modified 1 files, removed 0 files
+Hint: This action reverted an 'undo' operation. The repository is now in the same state as it was before the original 'undo'.
+Hint: If your goal is to undo multiple operations, consider using `jj op log` to see past states, and `jj op restore` to restore one of these states.
+
+$ jj config set --repo debug.randomness-seed 12370
+$ jj undo
+Undid operation: 588ca5b61206 (2025-02-06 09:43:34) undo operation f4d229f0501caf00432edafeacfbc0f733188ff7ba910e490dd091dc5fed7a3d9bbb2bb6227c41cb7bc518452753cdfccb97546752058495e223f51b6c7c352e
+Working copy now at: nvnlxpxw 0d1ce6d4 (empty) (no description set)
+Parent commit      : tnmounps 326253c2 goodbye-world | Goodbye, world!
+Added 0 files, modified 1 files, removed 0 files
+Hint: This action reverted an 'undo' operation. The repository is now in the same state as it was before the original 'undo'.
+Hint: If your goal is to undo multiple operations, consider using `jj op log` to see past states, and `jj op restore` to restore one of these states.
+
+$ jj config set --repo debug.randomness-seed 12371
+$ jj new --before n --no-edit
+Created new commit wmznvnuw 24fb2f9f (empty) (no description set)
+Rebased 1 descendant commits
+Working copy now at: nvnlxpxw 6ac2036e (empty) (no description set)
+Parent commit      : wmznvnuw 24fb2f9f (empty) (no description set)
+
+$ jj config set --repo debug.randomness-seed 12371
+$ jj log
+@  nvnlxpxw steve@steveklabnik.com 2025-02-06 09:43:34 6ac2036e
+│  (empty) (no description set)
+○  wmznvnuw steve@steveklabnik.com 2025-02-06 09:43:31 git_head() 24fb2f9f
+│  (empty) (no description set)
 ○  tnmounps steve@steveklabnik.com 2025-02-06 09:43:34 goodbye-world 326253c2
 │  Goodbye, world!
 ◆  ptrqnyzv steve@steveklabnik.com 2024-09-24 12:43:36 trunk 0c72abbb
 │  Hello, world!
 ~
 
-$ jj config set --repo debug.randomness-seed 12365
-$ jj abandon
-Abandoned commit snwusnyo 16fdca94 (empty) (no description set)
-Working copy now at: mtuyzlkn c3dd0352 (empty) (no description set)
-Parent commit      : opqvmvrn 4c9d75dd hello and goodbye world
+$ jj config set --repo debug.randomness-seed 12372
+$ jj new trunk
+Working copy now at: oquwwlss 09f65a23 (empty) (no description set)
+Parent commit      : ptrqnyzv 0c72abbb trunk | Hello, world!
+Added 0 files, modified 1 files, removed 0 files
+
+$ jj log
+@  oquwwlss steve@steveklabnik.com 2025-02-06 09:43:32 09f65a23
+│  (empty) (no description set)
+│ ○  wmznvnuw steve@steveklabnik.com 2025-02-06 09:43:31 24fb2f9f
+│ │  (empty) (no description set)
+│ ○  tnmounps steve@steveklabnik.com 2025-02-06 09:43:34 goodbye-world 326253c2
+├─╯  Goodbye, world!
+◆  ptrqnyzv steve@steveklabnik.com 2024-09-24 12:43:36 trunk git_head() 0c72abbb
+│  Hello, world!
+~
 
 ```
