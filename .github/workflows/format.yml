@@ -3,7 +3,6 @@ on:
   push:
     branches: trunk
   pull_request:
-    branches: trunk
   merge_group:
 
 env:
