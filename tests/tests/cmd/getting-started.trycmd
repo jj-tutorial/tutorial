@@ -32,7 +32,7 @@ $ jj log
 
 $ jj config set --repo debug.randomness-seed 12348
 $ jj status
-The working copy is clean
+The working copy has no changes.
 Working copy : tnmounps 4fed3b0d (empty) (no description set)
 Parent commit: ptrqnyzv 0c72abbb trunk | Hello, world!
 
@@ -91,7 +91,7 @@ Parent commit      : opqvmvrn 4c9d75dd hello and goodbye world
 
 $ jj config set --repo debug.randomness-seed 12346
 $ jj st
-The working copy is clean
+The working copy has no changes.
 Working copy : snwusnyo f909120c (empty) (no description set)
 Parent commit: opqvmvrn 4c9d75dd hello and goodbye world
 
@@ -232,6 +232,8 @@ Undid operation: 4b333db019bb (2025-02-06 09:43:34) undo operation 09b43db27b4b8
 Working copy now at: snwusnyo fe82e41b (no description set)
 Parent commit      : opqvmvrn 4c9d75dd hello and goodbye world
 Added 0 files, modified 1 files, removed 0 files
+Hint: This action reverted an 'undo' operation. The repository is now in the same state as it was before the original 'undo'.
+Hint: If your goal is to undo multiple operations, consider using `jj op log` to see past states, and `jj op restore` to restore one of these states.
 
 $ jj config set --repo debug.randomness-seed 12362
 $ jj undo
@@ -239,6 +241,8 @@ Undid operation: 8f227826566b (2025-02-06 09:43:34) undo operation 4b333db019bb6
 Working copy now at: snwusnyo 16fdca94 (empty) (no description set)
 Parent commit      : opqvmvrn 4c9d75dd hello and goodbye world
 Added 0 files, modified 1 files, removed 0 files
+Hint: This action reverted an 'undo' operation. The repository is now in the same state as it was before the original 'undo'.
+Hint: If your goal is to undo multiple operations, consider using `jj op log` to see past states, and `jj op restore` to restore one of these states.
 
 $ jj config set --repo debug.randomness-seed 12363
 $ jj new --before x --no-edit
