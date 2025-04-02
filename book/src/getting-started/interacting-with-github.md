@@ -8,7 +8,7 @@ would make it harder to understand.
 
 Let's look at that `jj log` output again:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:49:56}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:54:61}} 
 
 Do you see that little `trunk` over on the right there? That is a *bookmark*
 in `jj`, and it's how `jj` understands git branches. `trunk` is the name of
@@ -24,7 +24,7 @@ locally, but when we interact with GitHub, it needs a branch name.
 
 To create a bookmark, we can use `jj bookmark`:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:59:61}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:64:65}} 
 
 `jj bookmark create` takes a name for the bookmark, and then we also pass a `-r` flag.
 This is short for "revision," which is a sort of catch-all name for the various kinds
@@ -33,7 +33,7 @@ the change ID. In this case, we pass `@-`, which means "the parent of `@`."
 
 Let's look at our log:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:63:70}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:68:75}} 
 
 We can now see `goodbye-world` listed on the right. Great! Let's push that up
 to GitHub. But before we do, a warning:

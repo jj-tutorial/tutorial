@@ -7,7 +7,7 @@ Getting rid of changes is very easy in `jj`: we can do it with `jj abandon`.
 
 If you remember, we're in the middle of some stuff:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:107:112}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:114:118}} 
 
 If you are coming to this section fresh, just type `jj new` a few times to
 give yourself some good changes. Done? Great. Let's throw them away.
@@ -17,25 +17,25 @@ give yourself some good changes. Done? Great. Let's throw them away.
 Let's say we don't like that "hello and goodbye world" stuff. We're not going
 to pursue that further. Getting rid of it is as easy as:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:114:118}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:128:132}} 
 
 By default, `jj restore` takes changes from your parent change, and puts them
 into `@`. But there's `--from` and even `--into` flags you can pass as well.
 Let's grab the diff from our first commit, and apply it to `@`:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:121:125}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:128:132}} 
 
 As you can see we aren't empty any more. Well, what does our code look like?
 Let's use `jj diff` to see:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:128:132}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:135:139}} 
 
 This format is different than `git`'s: we have red and green to indicate
 what's changed, for example.
 
 If you want to get a `git` style diff instead, that is easy as well:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:135:144}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:142:151}} 
 
 We only had one file that was changed, so we didn't *need* to pass the path to
 `jj restore`, but `jj restore` is mostly used with individual paths.  If we
@@ -50,7 +50,7 @@ But what if we want to delete a change entirely?
 At any time, you can get rid of a change with `jj abandon`. It's tons of fun!
 Let's try it:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:147:151}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:154:158}} 
 
 This throws away our current change. We abandoned `opqvmvrn`, and since that
 was the same as `@`, `jj` makes a new change for us, in this case, called
@@ -59,11 +59,11 @@ was the same as `@`, `jj` makes a new change for us, in this case, called
 But what if we abandon something that's not `@`? Like, let's say, `t`, the
 change that we're currently on top of. What's the worst that could happen?
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:154:160}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:161:167}} 
 
 So what happened here?
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:163:169}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:170:175}} 
 
 As you can see, because we got rid of the commit we were standing on, instead of throwing
 us away too, `jj` just re-parented us onto the abandoned commit's parent. We're still on
@@ -78,11 +78,11 @@ I have good news.
 
 There's a really useful subcommand that goes by `jj undo`:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:171:175}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:178:182}} 
 
 That's it! We're good again:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:178:185}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:185:192}} 
 
 Everything is back to where we put it. We can always `jj undo` to undo
 *any* of our last operations, and `jj` will make things right again.
@@ -95,7 +95,7 @@ though. What do you think would happen if we `jj undo`'d again right now?
 
 Make your guess, and then give it a try:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:188:195}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:195:201}} 
 
 That's right: the last thing you did was an `undo`, so an `undo` just
 `undo`es that `undo`. Hilarious, but kind of frustrating. There's a
@@ -105,7 +105,7 @@ a bit trickier than it sounds.
 Regardless, we can fix this: there's no problem with `jj undo` that you
 can't solve by throwing more `jj undo`s at it:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:197:203}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:204:210}} 
 
 Whew. That's enough of that.
 
@@ -114,24 +114,24 @@ Whew. That's enough of that.
 Having an empty change with no description is fine to have if it's
 `@`, or if it has children. Here's a fun party trick:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:206:210}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:213:217}} 
 
 That's right: `jj new` can take `--before` or `--after` flags to
 squish a change in between others. (Yes, we're trying to make squish happen.)
 And `--no-edit` means that we don't want to move our working copy
 to the new change: `@` stays right where it is:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:213:222}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:220:229}} 
 
 So that change is fine. But what if we move away from these changes?
 Let's make a new change on top of `trunk`:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:225:228}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:232:235}} 
 
 We had two empty commits on top of `goodbye-world` before, but
 what about now?
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:230:239}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:238:247}} 
 
 Our empty change `nvnlxpxw` was discarded, automatically. You don't have to
 worry about `jj new` littering up your repository, empty changes will end up
