@@ -80,7 +80,7 @@ one, it will refuse unless you pass `--ignore-immutable` as an argument.
 
 Let's look at `jj log`:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:63:70}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:68:75}} 
 
 We have the green `@`, but its parent instead has a `○`. This change
 is mutable. But what about `p`? It has a `◆`. This change is immutable.
@@ -103,7 +103,7 @@ to us right now.
 We can use `jj show` to show information about changes. The root change
 has a change ID of all `z`s, let's check it out:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:73:81}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:78:84}} 
 
 Pretty fun. Wait, what's that `Commit ID` doing there? Okay, let's
 talk about commits.
@@ -117,7 +117,7 @@ So we've been talking about how changes are different than `git`'s commits...
 but `jj` also has commits. Let me explain. Let's use `jj st` to look at our
 current change:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:83:87}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:88:91}} 
 
 Do you see how we have four identifiers there?
 
@@ -134,7 +134,7 @@ the contents of the commit, when you create a new git commit, you're also going
 to get a different ID. Here, let's give it a try: modify `src/main.rs`, in any
 way that you'd like. Then we'll run `jj st` again:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:92:97}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:99:103}} 
 
 `o` used to have a commit ID of `95d5c471`, but now it's `c920ae70`. Our change
 ID remains stable, but the commit ID will change over time.
@@ -143,7 +143,7 @@ This is very powerful! Part 4 of the tutorial is titled "Fixing Problems," and
 a lot of the stuff we will talk about there is powered by commits. We can
 use `jj evolog`, the "evolution log," to see how a change has evolved over time:
 
-{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:99:106}} 
+{{#trycmdinclude tests/tests/cmd/getting-started.trycmd:106:111}} 
 
 There are a lot of flags to control `jj evolog`'s output. I've chosen the
 `summary` flag here to show which files we changed.

@@ -22,17 +22,16 @@ jobs:
           mkdir mdbook
           curl -sSL $url | tar -xz --directory=./mdbook
           echo `pwd`/mdbook >> $GITHUB_PATH
-      - uses: baptiste0928/cargo-install@v3
-        with:
-          crate: jj-cli
-          version: "=0.27.0"
+      - name: Build jj
+        run: |
+          cargo build
       - name: Configure jj
         run: |
-          jj config set --user user.name "Steve Klabnik"
-          jj config set --user user.email "steve@steveklabnik.com"
+          cargo run --bin jj -- config set --user user.name "Steve Klabnik"
+          cargo run --bin jj -- config set --user user.email "steve@steveklabnik.com"
       - name: Build Book
         run: |
-          cargo build && PATH=$PATH:target/debug/ mdbook build book
+          PATH=$PATH:target/debug/ mdbook build book
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact

@@ -1,16 +1,9 @@
-use std::collections::HashMap;
-use std::fs;
 use std::io;
-use std::process::Command;
-use std::process::Stdio;
-use std::sync::LazyLock;
-use std::sync::Mutex;
 
 use mdbook::errors::Result;
 use mdbook::preprocess::CmdPreprocessor;
 use mdbook::BookItem;
 use regex::Regex;
-use tempfile::TempDir;
 
 fn main() -> Result<()> {
     let mut args = std::env::args().skip(1);
@@ -31,7 +24,7 @@ fn main() -> Result<()> {
         let BookItem::Chapter(chapter) = item else {
             return;
         };
-        match run_examples(&chapter.content) {
+        match insert_trycmd_output(&chapter.content) {
             Ok(new_content) => chapter.content = new_content,
             Err(e) => eprintln!("could not process chapter: {e}"),
         }
@@ -42,102 +35,7 @@ fn main() -> Result<()> {
     Ok(())
 }
 
-struct Cache {
-    inner: LazyLock<Mutex<HashMap<String, String>>>,
-}
-
-static CACHE: Cache = Cache {
-    inner: LazyLock::new(|| Mutex::new(HashMap::new())),
-};
-
-impl Cache {
-    fn render(&self, key: &str) -> String {
-        let mut map = self.inner.lock().unwrap();
-
-        map.entry(key.to_string())
-            .or_insert_with(|| {
-                let contents = fs::read_to_string(key).unwrap();
-                let contents: String = contents
-                    .lines()
-                    .filter(|line| line.starts_with("$ "))
-                    .collect::<Vec<&str>>()
-                    .join("\n");
-
-                let mut rendered = String::new();
-
-                let dir = TempDir::new().unwrap();
-
-                for command in contents.lines() {
-                    // getting real hard-coded with it. we want to set this to never for
-                    // reproducibility in trycmd, but we also want it to be on here because
-                    // that's the whole dang point!
-                    let command = if command == "$ jj config set --repo ui.color never" {
-                        " jj config set --repo ui.color always"
-                    } else {
-                        command.strip_prefix('$').unwrap()
-                    };
-
-                    eprintln!("about to run {command}");
-
-                    let output = Command::new("bash")
-                        .current_dir(&dir)
-                        .arg("-c")
-                        .arg(command)
-                        .stdout(Stdio::piped())
-                        .stderr(Stdio::piped())
-                        .output()
-                        .unwrap();
-
-                    let render = |s| {
-                        let input = String::from_utf8(s).unwrap();
-                        let input = replace_colors(input);
-                        ansi_to_html::Converter::new()
-                            .four_bit_var_prefix(Some("jj-".to_string()))
-                            .convert(&input)
-                    };
-
-                    let stdout = render(output.stdout).expect("stdout failed to render");
-                    let stderr = render(output.stderr).expect("stderr failed to render");
-
-                    rendered.push('$');
-                    rendered.push_str(command);
-                    rendered.push('\n');
-                    rendered.push_str(&stdout);
-                    rendered.push_str(&stderr);
-                    if !stdout.is_empty() || !stderr.is_empty() {
-                        rendered.push('\n');
-                    }
-                }
-
-                rendered
-            })
-            .to_string()
-    }
-}
-
-fn replace_colors(input: String) -> String {
-    let re = Regex::new(r"\x1b\[38;5;([0-9]+)m").unwrap();
-
-    re.replace_all(&input, |caps: &regex::Captures| {
-        if let Ok(num) = caps[1].parse::<u8>() {
-            let replacement = match num {
-                0..=7 => 30 + num,        // Standard foreground colors
-                8..=15 => 90 + (num - 8), // Bright foreground colors
-                code => {
-                    eprintln!("non-16 color found: {code}");
-                    return caps[0].to_string(); // Keep unchanged if out of
-                                                // range
-                }
-            };
-            format!("\x1b[{}m", replacement)
-        } else {
-            caps[0].to_string()
-        }
-    })
-    .to_string()
-}
-
-fn run_examples(content: &str) -> Result<String> {
+fn insert_trycmd_output(content: &str) -> Result<String> {
     let mut buf = content.to_string();
     let regex = Regex::new(r#"\{\{#trycmdinclude ([\w\/.\-]+):(\d+)(?::(\d+))?\}\}"#).unwrap();
 
@@ -148,15 +46,21 @@ fn run_examples(content: &str) -> Result<String> {
 
             let path = cap.get(1).unwrap();
 
-            Match {
-                contents: CACHE.render(path.as_str()),
+            let contents = std::fs::read_to_string(path.as_str())?;
+            let contents = replace_colors(contents);
+            let contents = ansi_to_html::Converter::new()
+                .four_bit_var_prefix(Some("jj-".to_string()))
+                .convert(&contents)?;
+
+            Ok(Match {
+                contents,
                 pos_start: m.start(),
                 pos_end: m.end(),
                 start: cap.get(2).map(|c| c.as_str().parse().unwrap()),
                 end: cap.get(3).map(|c| c.as_str().parse().unwrap()),
-            }
+            })
         })
-        .collect();
+        .collect::<Result<Vec<Match>>>()?;
 
     replace_matches(&mut buf, &mut matches)?;
 
@@ -209,4 +113,27 @@ fn replace_matches(input: &mut String, matches: &mut Vec<Match>) -> io::Result<(
     }
 
     Ok(())
+}
+
+/// replace 256 color output with 16 color output
+fn replace_colors(input: String) -> String {
+    let re = Regex::new(r"\x1b\[38;5;([0-9]+)m").unwrap();
+
+    re.replace_all(&input, |caps: &regex::Captures| {
+        if let Ok(num) = caps[1].parse::<u8>() {
+            let replacement = match num {
+                0..=7 => 30 + num,        // Standard foreground colors
+                8..=15 => 90 + (num - 8), // Bright foreground colors
+                code => {
+                    eprintln!("non-16 color found: {code}");
+                    return caps[0].to_string(); // Keep unchanged if out of
+                                                // range
+                }
+            };
+            format!("\x1b[{}m", replacement)
+        } else {
+            caps[0].to_string()
+        }
+    })
+    .to_string()
 }
