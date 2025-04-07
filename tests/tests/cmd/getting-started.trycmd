@@ -3,8 +3,8 @@ $ JJ_RANDOMNESS_SEED=12345 jj git clone --colocate https://github.com/jj-tutoria
 Fetching into new repo in "[CWD]"
 bookmark: trunk@origin [new] untracked
 Setting the revset alias `trunk()` to `trunk@origin`
-Working copy now at: tnmounps 4fed3b0d (empty) (no description set)
-Parent commit      : ptrqnyzv 0c72abbb trunk | Hello, world!
+Working copy  (@) now at: tnmounps 4fed3b0d (empty) (no description set)
+Parent commit (@-)      : ptrqnyzv 0c72abbb trunk | Hello, world!
 Added 4 files, modified 0 files, removed 0 files
 
 $ jj config set --repo ui.color always
@@ -33,8 +33,8 @@ $ jj log
 $ jj config set --repo debug.randomness-seed 12348
 $ jj status
 The working copy has no changes.
-Working copy : [1m[38;5;13mt[38;5;8mnmounps[39m [38;5;12m4[38;5;8mfed3b0d[39m [38;5;10m(empty)[39m [38;5;10m(no description set)[0m
-Parent commit: [1m[38;5;5mp[0m[38;5;8mtrqnyzv[39m [1m[38;5;4m0[0m[38;5;8mc72abbb[39m [38;5;5mtrunk[39m[38;5;8m | [39mHello, world!
+Working copy  (@) : [1m[38;5;13mt[38;5;8mnmounps[39m [38;5;12m4[38;5;8mfed3b0d[39m [38;5;10m(empty)[39m [38;5;10m(no description set)[0m
+Parent commit (@-): [1m[38;5;5mp[0m[38;5;8mtrqnyzv[39m [1m[38;5;4m0[0m[38;5;8mc72abbb[39m [38;5;5mtrunk[39m[38;5;8m | [39mHello, world!
 
 $ sed -i 's/Hello/Goodbye/' src/main.rs
 
@@ -42,13 +42,13 @@ $ jj config set --repo debug.randomness-seed 12349
 $ jj st
 Working copy changes:
 [38;5;6mM src/main.rs[39m
-Working copy : [1m[38;5;13mt[38;5;8mnmounps[39m [38;5;12m7[38;5;8m29bb51c[39m [38;5;3m(no description set)[0m
-Parent commit: [1m[38;5;5mp[0m[38;5;8mtrqnyzv[39m [1m[38;5;4m0[0m[38;5;8mc72abbb[39m [38;5;5mtrunk[39m[38;5;8m | [39mHello, world!
+Working copy  (@) : [1m[38;5;13mt[38;5;8mnmounps[39m [38;5;12m7[38;5;8m29bb51c[39m [38;5;3m(no description set)[0m
+Parent commit (@-): [1m[38;5;5mp[0m[38;5;8mtrqnyzv[39m [1m[38;5;4m0[0m[38;5;8mc72abbb[39m [38;5;5mtrunk[39m[38;5;8m | [39mHello, world!
 
 $ jj config set --repo debug.randomness-seed 12350
 $ jj commit -m "Goodbye, world!"
-Working copy now at: [1m[38;5;13mo[38;5;8mpqvmvrn[39m [38;5;12m9[38;5;8m5d5c471[39m [38;5;10m(empty)[39m [38;5;10m(no description set)[0m
-Parent commit      : [1m[38;5;5mt[0m[38;5;8mnmounps[39m [1m[38;5;4m3[0m[38;5;8m26253c2[39m Goodbye, world!
+Working copy  (@) now at: [1m[38;5;13mo[38;5;8mpqvmvrn[39m [38;5;12m9[38;5;8m5d5c471[39m [38;5;10m(empty)[39m [38;5;10m(no description set)[0m
+Parent commit (@-)      : [1m[38;5;5mt[0m[38;5;8mnmounps[39m [1m[38;5;4m3[0m[38;5;8m26253c2[39m Goodbye, world!
 
 $ jj config set --repo debug.randomness-seed 12351
 $ jj log
@@ -87,8 +87,8 @@ Committer: [38;5;1m(no name set)[39m <[38;5;1m(no email set)[39m> ([38;5;6m
 $ jj config set --repo debug.randomness-seed 12355
 $ jj st
 The working copy has no changes.
-Working copy : [1m[38;5;13mo[38;5;8mpqvmvrn[39m [38;5;12m9[38;5;8m5d5c471[39m [38;5;10m(empty)[39m [38;5;10m(no description set)[0m
-Parent commit: [1m[38;5;5mt[0m[38;5;8mnmounps[39m [1m[38;5;4m3[0m[38;5;8m26253c2[39m [38;5;5mgoodbye-world[39m[38;5;8m | [39mGoodbye, world!
+Working copy  (@) : [1m[38;5;13mo[38;5;8mpqvmvrn[39m [38;5;12m9[38;5;8m5d5c471[39m [38;5;10m(empty)[39m [38;5;10m(no description set)[0m
+Parent commit (@-): [1m[38;5;5mt[0m[38;5;8mnmounps[39m [1m[38;5;4m3[0m[38;5;8m26253c2[39m [38;5;5mgoodbye-world[39m[38;5;8m | [39mGoodbye, world!
 
 $ jj config set --repo debug.randomness-seed 12356
 
@@ -99,8 +99,8 @@ $ jj config set --repo debug.randomness-seed 12357
 $ jj st
 Working copy changes:
 [38;5;6mM src/main.rs[39m
-Working copy : [1m[38;5;13mo[38;5;8mpqvmvrn[39m [38;5;12mc[38;5;8m920ae70[39m [38;5;3m(no description set)[0m
-Parent commit: [1m[38;5;5mt[0m[38;5;8mnmounps[39m [1m[38;5;4m3[0m[38;5;8m26253c2[39m [38;5;5mgoodbye-world[39m[38;5;8m | [39mGoodbye, world!
+Working copy  (@) : [1m[38;5;13mo[38;5;8mpqvmvrn[39m [38;5;12mc[38;5;8m920ae70[39m [38;5;3m(no description set)[0m
+Parent commit (@-): [1m[38;5;5mt[0m[38;5;8mnmounps[39m [1m[38;5;4m3[0m[38;5;8m26253c2[39m [38;5;5mgoodbye-world[39m[38;5;8m | [39mGoodbye, world!
 
 $ jj config set --repo debug.randomness-seed 12358
 $ jj evolog --summary
@@ -114,21 +114,21 @@ $ jj config set --repo debug.randomness-seed 12359
 $ jj st
 Working copy changes:
 [38;5;6mM src/main.rs[39m
-Working copy : [1m[38;5;13mo[38;5;8mpqvmvrn[39m [38;5;12mc[38;5;8m920ae70[39m [38;5;3m(no description set)[0m
-Parent commit: [1m[38;5;5mt[0m[38;5;8mnmounps[39m [1m[38;5;4m3[0m[38;5;8m26253c2[39m [38;5;5mgoodbye-world[39m[38;5;8m | [39mGoodbye, world!
+Working copy  (@) : [1m[38;5;13mo[38;5;8mpqvmvrn[39m [38;5;12mc[38;5;8m920ae70[39m [38;5;3m(no description set)[0m
+Parent commit (@-): [1m[38;5;5mt[0m[38;5;8mnmounps[39m [1m[38;5;4m3[0m[38;5;8m26253c2[39m [38;5;5mgoodbye-world[39m[38;5;8m | [39mGoodbye, world!
 
 $ jj config set --repo debug.randomness-seed 12360
 $ jj restore src/main.rs
 Created [1m[38;5;5mo[0m[38;5;8mpqvmvrn[39m [1m[38;5;4ma[0m[38;5;8mcb427ce[39m [38;5;2m(empty)[39m [38;5;2m(no description set)[39m
-Working copy now at: [1m[38;5;13mo[38;5;8mpqvmvrn[39m [38;5;12ma[38;5;8mcb427ce[39m [38;5;10m(empty)[39m [38;5;10m(no description set)[0m
-Parent commit      : [1m[38;5;5mt[0m[38;5;8mnmounps[39m [1m[38;5;4m3[0m[38;5;8m26253c2[39m [38;5;5mgoodbye-world[39m[38;5;8m | [39mGoodbye, world!
+Working copy  (@) now at: [1m[38;5;13mo[38;5;8mpqvmvrn[39m [38;5;12ma[38;5;8mcb427ce[39m [38;5;10m(empty)[39m [38;5;10m(no description set)[0m
+Parent commit (@-)      : [1m[38;5;5mt[0m[38;5;8mnmounps[39m [1m[38;5;4m3[0m[38;5;8m26253c2[39m [38;5;5mgoodbye-world[39m[38;5;8m | [39mGoodbye, world!
 Added 0 files, modified 1 files, removed 0 files
 
 $ jj config set --repo debug.randomness-seed 12361
 $ jj restore --from p src/main.rs
 Created [1m[38;5;5mo[0m[38;5;8mpqvmvrn[39m [1m[38;5;4mb[0m[38;5;8m37efa21[39m [38;5;3m(no description set)[39m
-Working copy now at: [1m[38;5;13mo[38;5;8mpqvmvrn[39m [38;5;12mb[38;5;8m37efa21[39m [38;5;3m(no description set)[0m
-Parent commit      : [1m[38;5;5mt[0m[38;5;8mnmounps[39m [1m[38;5;4m3[0m[38;5;8m26253c2[39m [38;5;5mgoodbye-world[39m[38;5;8m | [39mGoodbye, world!
+Working copy  (@) now at: [1m[38;5;13mo[38;5;8mpqvmvrn[39m [38;5;12mb[38;5;8m37efa21[39m [38;5;3m(no description set)[0m
+Parent commit (@-)      : [1m[38;5;5mt[0m[38;5;8mnmounps[39m [1m[38;5;4m3[0m[38;5;8m26253c2[39m [38;5;5mgoodbye-world[39m[38;5;8m | [39mGoodbye, world!
 Added 0 files, modified 1 files, removed 0 files
 
 $ jj config set --repo debug.randomness-seed 12362
@@ -152,18 +152,20 @@ $ jj diff --git
 
 $ jj config set --repo debug.randomness-seed 12364
 $ jj abandon
-Abandoned commit [1m[38;5;5mo[0m[38;5;8mpqvmvrn[39m [1m[38;5;4mb[0m[38;5;8m37efa21[39m [38;5;3m(no description set)[39m
-Working copy now at: [1m[38;5;13mn[38;5;8mvnlxpxw[39m [38;5;12m0d[38;5;8m1ce6d4[39m [38;5;10m(empty)[39m [38;5;10m(no description set)[0m
-Parent commit      : [1m[38;5;5mt[0m[38;5;8mnmounps[39m [1m[38;5;4m3[0m[38;5;8m26253c2[39m [38;5;5mgoodbye-world[39m[38;5;8m | [39mGoodbye, world!
+Abandoned 1 commits:
+  [1m[38;5;5mo[0m[38;5;8mpqvmvrn[39m [1m[38;5;4mb[0m[38;5;8m37efa21[39m [38;5;3m(no description set)[39m
+Working copy  (@) now at: [1m[38;5;13mn[38;5;8mvnlxpxw[39m [38;5;12m0d[38;5;8m1ce6d4[39m [38;5;10m(empty)[39m [38;5;10m(no description set)[0m
+Parent commit (@-)      : [1m[38;5;5mt[0m[38;5;8mnmounps[39m [1m[38;5;4m3[0m[38;5;8m26253c2[39m [38;5;5mgoodbye-world[39m[38;5;8m | [39mGoodbye, world!
 Added 0 files, modified 1 files, removed 0 files
 
 $ jj config set --repo debug.randomness-seed 12365
 $ jj abandon -r t
-Abandoned commit [1m[38;5;5mt[0m[38;5;8mnmounps[39m [1m[38;5;4m3[0m[38;5;8m26253c2[39m [38;5;5mgoodbye-world[39m[38;5;8m | [39mGoodbye, world!
+Abandoned 1 commits:
+  [1m[38;5;5mt[0m[38;5;8mnmounps[39m [1m[38;5;4m3[0m[38;5;8m26253c2[39m [38;5;5mgoodbye-world[39m[38;5;8m | [39mGoodbye, world!
 Deleted bookmarks: goodbye-world
 Rebased 1 descendant commits onto parents of abandoned commits
-Working copy now at: [1m[38;5;13mn[38;5;8mvnlxpxw[39m [38;5;12md[38;5;8mfde4351[39m [38;5;10m(empty)[39m [38;5;10m(no description set)[0m
-Parent commit      : [1m[38;5;5mp[0m[38;5;8mtrqnyzv[39m [1m[38;5;4m0[0m[38;5;8mc72abbb[39m [38;5;5mtrunk[39m[38;5;8m | [39mHello, world!
+Working copy  (@) now at: [1m[38;5;13mn[38;5;8mvnlxpxw[39m [38;5;12md[38;5;8mfde4351[39m [38;5;10m(empty)[39m [38;5;10m(no description set)[0m
+Parent commit (@-)      : [1m[38;5;5mp[0m[38;5;8mtrqnyzv[39m [1m[38;5;4m0[0m[38;5;8mc72abbb[39m [38;5;5mtrunk[39m[38;5;8m | [39mHello, world!
 Added 0 files, modified 1 files, removed 0 files
 
 $ jj config set --repo debug.randomness-seed 12366
@@ -177,8 +179,8 @@ $ jj log
 $ jj config set --repo debug.randomness-seed 12367
 $ jj undo
 Undid operation: [38;5;4m57a0967c9ede[39m ([38;5;6m2025-02-06 09:43:34[39m) abandon commit 326253c27c9867c92d11422133a39b67fdcb602f
-Working copy now at: [1m[38;5;13mn[38;5;8mvnlxpxw[39m [38;5;12m0d[38;5;8m1ce6d4[39m [38;5;10m(empty)[39m [38;5;10m(no description set)[0m
-Parent commit      : [1m[38;5;5mt[0m[38;5;8mnmounps[39m [1m[38;5;4m3[0m[38;5;8m26253c2[39m [38;5;5mgoodbye-world[39m[38;5;8m | [39mGoodbye, world!
+Working copy  (@) now at: [1m[38;5;13mn[38;5;8mvnlxpxw[39m [38;5;12m0d[38;5;8m1ce6d4[39m [38;5;10m(empty)[39m [38;5;10m(no description set)[0m
+Parent commit (@-)      : [1m[38;5;5mt[0m[38;5;8mnmounps[39m [1m[38;5;4m3[0m[38;5;8m26253c2[39m [38;5;5mgoodbye-world[39m[38;5;8m | [39mGoodbye, world!
 Added 0 files, modified 1 files, removed 0 files
 
 $ jj config set --repo debug.randomness-seed 12368
@@ -194,8 +196,8 @@ $ jj log
 $ jj config set --repo debug.randomness-seed 12369
 $ jj undo
 Undid operation: [38;5;4mf4d229f0501c[39m ([38;5;6m2025-02-06 09:43:34[39m) undo operation 57a0967c9ede1d9ea8a06f733fddf8cf6bcd632857444936fc8f1b2d17bfdb8e1e525cc3baa3264afb92adb480499cc23fde7348ca51fc8807081462071fe211
-Working copy now at: [1m[38;5;13mn[38;5;8mvnlxpxw[39m [38;5;12md[38;5;8mfde4351[39m [38;5;10m(empty)[39m [38;5;10m(no description set)[0m
-Parent commit      : [1m[38;5;5mp[0m[38;5;8mtrqnyzv[39m [1m[38;5;4m0[0m[38;5;8mc72abbb[39m [38;5;5mtrunk[39m[38;5;8m | [39mHello, world!
+Working copy  (@) now at: [1m[38;5;13mn[38;5;8mvnlxpxw[39m [38;5;12md[38;5;8mfde4351[39m [38;5;10m(empty)[39m [38;5;10m(no description set)[0m
+Parent commit (@-)      : [1m[38;5;5mp[0m[38;5;8mtrqnyzv[39m [1m[38;5;4m0[0m[38;5;8mc72abbb[39m [38;5;5mtrunk[39m[38;5;8m | [39mHello, world!
 Added 0 files, modified 1 files, removed 0 files
 [1m[38;5;6mHint: [0m[39mThis action reverted an 'undo' operation. The repository is now in the same state as it was before the original 'undo'.[39m
 [1m[38;5;6mHint: [0m[39mIf your goal is to undo multiple operations, consider using `jj op log` to see past states, and `jj op restore` to restore one of these states.[39m
@@ -203,8 +205,8 @@ Added 0 files, modified 1 files, removed 0 files
 $ jj config set --repo debug.randomness-seed 12370
 $ jj undo
 Undid operation: [38;5;4m588ca5b61206[39m ([38;5;6m2025-02-06 09:43:34[39m) undo operation f4d229f0501caf00432edafeacfbc0f733188ff7ba910e490dd091dc5fed7a3d9bbb2bb6227c41cb7bc518452753cdfccb97546752058495e223f51b6c7c352e
-Working copy now at: [1m[38;5;13mn[38;5;8mvnlxpxw[39m [38;5;12m0d[38;5;8m1ce6d4[39m [38;5;10m(empty)[39m [38;5;10m(no description set)[0m
-Parent commit      : [1m[38;5;5mt[0m[38;5;8mnmounps[39m [1m[38;5;4m3[0m[38;5;8m26253c2[39m [38;5;5mgoodbye-world[39m[38;5;8m | [39mGoodbye, world!
+Working copy  (@) now at: [1m[38;5;13mn[38;5;8mvnlxpxw[39m [38;5;12m0d[38;5;8m1ce6d4[39m [38;5;10m(empty)[39m [38;5;10m(no description set)[0m
+Parent commit (@-)      : [1m[38;5;5mt[0m[38;5;8mnmounps[39m [1m[38;5;4m3[0m[38;5;8m26253c2[39m [38;5;5mgoodbye-world[39m[38;5;8m | [39mGoodbye, world!
 Added 0 files, modified 1 files, removed 0 files
 [1m[38;5;6mHint: [0m[39mThis action reverted an 'undo' operation. The repository is now in the same state as it was before the original 'undo'.[39m
 [1m[38;5;6mHint: [0m[39mIf your goal is to undo multiple operations, consider using `jj op log` to see past states, and `jj op restore` to restore one of these states.[39m
@@ -213,8 +215,8 @@ $ jj config set --repo debug.randomness-seed 12371
 $ jj new --before n --no-edit
 Created new commit [1m[38;5;5mw[0m[38;5;8mmznvnuw[39m [1m[38;5;4m2[0m[38;5;8m4fb2f9f[39m [38;5;2m(empty)[39m [38;5;2m(no description set)[39m
 Rebased 1 descendant commits
-Working copy now at: [1m[38;5;13mn[38;5;8mvnlxpxw[39m [38;5;12m6[38;5;8mac2036e[39m [38;5;10m(empty)[39m [38;5;10m(no description set)[0m
-Parent commit      : [1m[38;5;5mw[0m[38;5;8mmznvnuw[39m [1m[38;5;4m2[0m[38;5;8m4fb2f9f[39m [38;5;2m(empty)[39m [38;5;2m(no description set)[39m
+Working copy  (@) now at: [1m[38;5;13mn[38;5;8mvnlxpxw[39m [38;5;12m6[38;5;8mac2036e[39m [38;5;10m(empty)[39m [38;5;10m(no description set)[0m
+Parent commit (@-)      : [1m[38;5;5mw[0m[38;5;8mmznvnuw[39m [1m[38;5;4m2[0m[38;5;8m4fb2f9f[39m [38;5;2m(empty)[39m [38;5;2m(no description set)[39m
 
 $ jj config set --repo debug.randomness-seed 12371
 $ jj log
@@ -230,8 +232,8 @@ $ jj log
 
 $ jj config set --repo debug.randomness-seed 12372
 $ jj new trunk
-Working copy now at: [1m[38;5;13mo[38;5;8mquwwlss[39m [38;5;12m09[38;5;8mf65a23[39m [38;5;10m(empty)[39m [38;5;10m(no description set)[0m
-Parent commit      : [1m[38;5;5mp[0m[38;5;8mtrqnyzv[39m [1m[38;5;4m0c[0m[38;5;8m72abbb[39m [38;5;5mtrunk[39m[38;5;8m | [39mHello, world!
+Working copy  (@) now at: [1m[38;5;13mo[38;5;8mquwwlss[39m [38;5;12m09[38;5;8mf65a23[39m [38;5;10m(empty)[39m [38;5;10m(no description set)[0m
+Parent commit (@-)      : [1m[38;5;5mp[0m[38;5;8mtrqnyzv[39m [1m[38;5;4m0c[0m[38;5;8m72abbb[39m [38;5;5mtrunk[39m[38;5;8m | [39mHello, world!
 Added 0 files, modified 1 files, removed 0 files
 
 $ jj config set --repo debug.randomness-seed 12373
