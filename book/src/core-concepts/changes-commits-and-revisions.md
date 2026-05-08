@@ -46,8 +46,7 @@ synchronization every time you save a file.
 
 This means that in some sense, you work "backwards" in `jj` from `git`'s
 perspective: it's not "modify files in your working tree, produce a commit"
-it's "make a new change, modify files in your working tree your working
-tree."
+it's "make a new change, modify files in your working tree."
 
 ### Descriptions
 
